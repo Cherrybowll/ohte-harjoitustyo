@@ -1,0 +1,113 @@
+commit 1643e026869965e649d6083c0527aa80fb1350c7
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 21:24:15 2024 +0200
+
+    assignment 11 practice
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 443dab591f4f138176157485986553caa9f394a9
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 21:19:19 2024 +0200
+
+    Add tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c57ba381187248cfe6e49625b54c533e5e49152f
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 21:14:26 2024 +0200
+
+    git add -p practice
+
+ eka.txt    | 4 ++--
+ kolmas.txt | 5 ++++-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+commit 992af2a0cb830fbf4bd2414cd0f27f7d6e465d2f
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 21:12:11 2024 +0200
+
+    Rename tiedosto.txt to eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit b0fba4c69f09deda3bbf95230374d4ea84b41f07
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 21:06:24 2024 +0200
+
+    Remove toinen.txt
+
+ toinen.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit bdcc022bfc825d99a29a69d64dd1619ed775de17
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 18:09:46 2024 +0200
+
+    Muokkaile vähän tiedosto.txt
+
+ tiedosto.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 810c59893a69cbba50e8bd521ed407a04d7a9ba9
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 18:08:55 2024 +0200
+
+    Muokkaa paljon tiedosto.txt
+
+ tiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1e8ae3361ec1a2108ba6b100024382fb0ff02c8e
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 17:18:54 2024 +0200
+
+    Hakemisto ja tiedosto
+
+ stuff/tiedosto | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e31a233ef824b7fb86991a7264414f345a8428ea
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 17:15:17 2024 +0200
+
+    Muutoksia
+
+ kolmas.txt | 1 +
+ toinen.txt | 2 ++
+ 2 files changed, 3 insertions(+)
+
+commit 756bb6a2f5bb76b570773fc8bf32e0ba15748224
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 17:14:23 2024 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit dd87087d99d524e4c60691d2be3500bd2579a105
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 17:07:05 2024 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 3fd4539b697f58a469843415c0bcc9f69035a4c4
+Author: Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>
+Date:   Tue Nov 5 17:04:16 2024 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

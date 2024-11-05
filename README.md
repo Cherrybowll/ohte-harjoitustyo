@@ -1,3 +1,10 @@
 # Ohjelmistotekniikka harjoitustyö
 
-:ghost: Tiedosto **komentorivi.txt** ei vastaa *täysin* tehtävänannon mukaista johtuen erilaisesta hierarkiasta. :ghost:
+## Tehtävät
+
+### Viikko 1
+
+- [gitlog.txt](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+- [komentorivi.txt](/laskarit/viikko1/komentorivi.txt)
+
+:ghost:

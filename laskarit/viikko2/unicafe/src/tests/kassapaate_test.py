@@ -113,6 +113,11 @@ class TestKassapaate(unittest.TestCase):
 
         self.assertEqual(self.kassapaate.edulliset, 0)
     
+    def test_syo_edullisesti_kortilla_ei_muuta_kassan_saldoa(self):
+        self.kassapaate.syo_edullisesti_kortilla(self.kortti)
+
+        self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1000.0)
+    
     #maukkaat kortilla
     def test_syo_maukkaasti_kortilla_veloittaa_kun_saldo_riittaa(self):
         self.kassapaate.syo_maukkaasti_kortilla(self.kortti)
@@ -147,3 +152,18 @@ class TestKassapaate(unittest.TestCase):
 
         self.assertEqual(self.kassapaate.maukkaat, 0)
     
+    def test_syo_maukkaasti_kortilla_ei_muuta_kassan_saldoa(self):
+        self.kassapaate.syo_maukkaasti_kortilla(self.kortti)
+
+        self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1000.0)
+    
+    #kortin lataaminen
+    def test_kortin_lataaminen_kasvattaa_kortin_saldoa(self):
+        self.kassapaate.lataa_rahaa_kortille(self.kortti, 100)
+
+        self.assertEqual(self.kortti.saldo_euroina(), 11.0)
+
+    def test_kortin_lataaminen_kasvattaa_kassan_saldoa(self):
+        self.kassapaate.lataa_rahaa_kortille(self.kortti, 100)
+
+        self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1001.0)

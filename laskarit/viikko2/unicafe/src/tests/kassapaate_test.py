@@ -167,3 +167,8 @@ class TestKassapaate(unittest.TestCase):
         self.kassapaate.lataa_rahaa_kortille(self.kortti, 100)
 
         self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1001.0)
+    
+    def test_kortin_lataaminen_ei_onnistu_negatiivisella_summalla(self):
+        self.kassapaate.lataa_rahaa_kortille(self.kortti, -100)
+
+        self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1000.0)

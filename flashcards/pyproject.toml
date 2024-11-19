@@ -6,8 +6,12 @@ authors = ["Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
+python-dotenv = "^1.0.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest-dotenv = "^0.5.2"
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,3 +1,4 @@
+from entities.collection import Collection
 from entities.flashcard import Flashcard
 from entities.user import User
 
@@ -50,7 +51,7 @@ class FlashcardService:
         if of_same_name:
             raise ValueError(f"You already have a collection named {name}")
         
-        self._collection_repository.create(name, self._user.id)
+        self._collection_repository.create(Collection(name, self._user.id))
 
         return
     

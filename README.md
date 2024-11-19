@@ -1,15 +1,4 @@
 # Ohjelmistotekniikka harjoitustyö
 
-## Tehtävät
-
-### Viikko 1
-
-- [gitlog.txt](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-- [komentorivi.txt](/laskarit/viikko1/komentorivi.txt)
-
-:ghost: <sup>:ghost:</sup> Tämän osion saanee jo poistaa?
-
-## Harjoitustyö
-
-- [Alustava vaatimusmäärittely](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
-- [Tuntikirjanpito](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+- [Alustava vaatimusmäärittely](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/vaatimusmaarittely.md)
+- [Tuntikirjanpito](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/tuntikirjanpito.md)

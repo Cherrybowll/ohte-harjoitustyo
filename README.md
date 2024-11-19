@@ -14,8 +14,9 @@ Sovelluksen asentaminen tarvitsee lisäksi Poetry-asennuksen.
 
 ## Asennus
 
-1. Hae repositorio laitteellesi joko lataamalla selaimesta tai kloonaamalla esim. komennolla
+1. Hae repositorio laitteellesi joko lataamalla selaimesta tai kloonaamalla jommalla kummalla komennoista (SSH/HTTPS)
 ```
+git@github.com:Cherrybowll/ohte-harjoitustyo.git
 git clone https://github.com/Cherrybowll/ohte-harjoitustyo
 ```
 

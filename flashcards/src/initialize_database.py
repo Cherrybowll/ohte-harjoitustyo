@@ -4,17 +4,26 @@ def create_tables(connection):
     cur = connection.cursor()
 
     sql = ("CREATE TABLE users("
-           "username TEXT PRIMARY KEY,"
+           "id INTEGER PRIMARY KEY,"
+           "username TEXT UNIQUE,"
            "password TEXT"
             ");")
     cur.execute(sql)
 
     sql = ("CREATE TABLE flashcards("
-           "id SERIAL PRIMARY KEY,"
+           "id INTEGER PRIMARY KEY,"
            "front TEXT,"
            "back TEXT,"
-           "collection TEXT"
+           "collection_id REFERENCES collections"
            ");")
+    cur.execute(sql)
+
+    sql = ("CREATE TABLE collections("
+           "id INTEGER PRIMARY KEY,"
+           "name TEXT,"
+           "creator_id REFERENCES users"
+           ");")
+    cur.execute(sql)
     connection.commit()
 
 def drop_tables(connection):
@@ -22,6 +31,7 @@ def drop_tables(connection):
 
     cur.execute("DROP TABLE IF EXISTS users;")
     cur.execute("DROP TABLE IF EXISTS flashcards;")
+    cur.execute("DROP TABLE IF EXISTS collections;")
     connection.commit()
 
 def initialize_database():

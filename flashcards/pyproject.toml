@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "flashcards"
+version = "0.1.0"
+description = "Ohte-kurssin harjoitustyö"
+authors = ["Cherrybowl <81250492+Cherrybowll@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

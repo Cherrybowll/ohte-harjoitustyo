@@ -1,5 +1,6 @@
 from database_connection import get_database_connection
 
+
 def create_tables(connection):
     cur = connection.cursor()
 
@@ -7,7 +8,7 @@ def create_tables(connection):
            "id INTEGER PRIMARY KEY,"
            "username TEXT UNIQUE,"
            "password TEXT"
-            ");")
+           ");")
     cur.execute(sql)
 
     sql = ("CREATE TABLE flashcards("
@@ -26,6 +27,7 @@ def create_tables(connection):
     cur.execute(sql)
     connection.commit()
 
+
 def drop_tables(connection):
     cur = connection.cursor()
 
@@ -34,11 +36,13 @@ def drop_tables(connection):
     cur.execute("DROP TABLE IF EXISTS collections;")
     connection.commit()
 
+
 def initialize_database():
     connection = get_database_connection()
 
     drop_tables(connection)
     create_tables(connection)
+
 
 if __name__ == "__main__":
     initialize_database()

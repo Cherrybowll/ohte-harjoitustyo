@@ -19,7 +19,7 @@ class FlashcardService:
         self._flashcard_repository = flashcard_repository
         self._user = None
         self._collection = None
-        self._practice_state = [0, 0]
+        self._practice_state = [0, 0, {}]
 
 
     def login(self, username, password):
@@ -81,6 +81,7 @@ class FlashcardService:
     
 
     def create_flashcard(self, front, back):
+        # note: add validation
         self._flashcard_repository.create(Flashcard(front, back, self._collection.id))
 
 
@@ -90,13 +91,23 @@ class FlashcardService:
 
     def start_practice(self):
         self._practice_state[0] = 0
-        self._practice_state[1] = len(self._collection.flashcards)
+        self._practice_state[1] = len(self.get_flashcards_from_collection())-1
+        self._practice_state[2] = {}
 
 
-    def progress_practice(self):
-        if self._practice_state[0] <= self._practice_state[1]:
+    def progress_practice(self, correct):
+        if self._practice_state[0] < self._practice_state[1]:
+            self._practice_state[2][self._practice_state[0]] = correct
             self._practice_state[0] += 1
-            return self._practice_state[0]
+            return True
+        elif self._practice_state[0] == self._practice_state[1]:
+            self._practice_state[2][self._practice_state[0]] = correct
+            self._practice_state = [0, 0, {}]
+            return False
+
+
+    def current_flashcard(self):
+        return self._practice_state[0]
 
 
 flashcard_service = FlashcardService()

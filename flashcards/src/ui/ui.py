@@ -34,15 +34,18 @@ class UI:
 
     def _show_collections_view(self):
         self._hide_current_view()
-        self._current_view = CollectionsView(self._root, self._show_login_view, self._show_flashcards_view)
+        self._current_view = CollectionsView(
+            self._root, self._show_login_view, self._show_flashcards_view)
         self._current_view.pack()
 
     def _show_flashcards_view(self):
         self._hide_current_view()
-        self._current_view = FlashcardsView(self._root, self._show_practice_view, self._show_collections_view)
+        self._current_view = FlashcardsView(
+            self._root, self._show_practice_view, self._show_collections_view)
         self._current_view.pack()
-    
+
     def _show_practice_view(self):
         self._hide_current_view()
-        self._current_view = PracticeView(self._root, self._show_flashcards_view)
+        self._current_view = PracticeView(
+            self._root, self._show_flashcards_view)
         self._current_view.pack()

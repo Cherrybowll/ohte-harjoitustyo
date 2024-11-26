@@ -21,7 +21,8 @@ class CollectionListView:
     def _initialize_collection(self, collection):
         item_frame = ttk.Frame(master=self._frame)
         label = ttk.Label(master=item_frame, text=collection.name)
-        open_collection_button = ttk.Button(master=item_frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
+        open_collection_button = ttk.Button(
+            master=item_frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
 
         label.grid(row=0, column=0, padx=5, pady=5)
         open_collection_button.grid(row=0, column=1, padx=5, pady=5)
@@ -99,7 +100,8 @@ class CollectionsView:
 
         header_label.grid(row=0, column=0, columnspan=2,
                           sticky=constants.EW, padx=5, pady=5)
-        self._collection_list_frame.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+        self._collection_list_frame.grid(
+            row=1, column=0, columnspan=2, padx=5, pady=5)
         self._create_collection_entry.grid(row=2, column=0, padx=5, pady=5)
         create_collection_button.grid(row=2, column=1, padx=5, pady=5)
         logout_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)

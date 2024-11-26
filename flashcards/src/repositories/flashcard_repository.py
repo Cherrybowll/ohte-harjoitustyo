@@ -34,7 +34,7 @@ class FlashcardRepository:
         cur.execute(sql, {
             "front":flashcard.front,
             "back": flashcard.back,
-            "collection_id":flashcard.collection_id
+            "collection_id": flashcard.collection_id
             })
 
         self._connection.commit()

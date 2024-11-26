@@ -4,3 +4,4 @@ class Flashcard:
         self.front = front
         self.back = back
         self.collection_id = collection_id
+        self.correct = False

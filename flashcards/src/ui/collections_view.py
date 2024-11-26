@@ -3,10 +3,12 @@ from services.flashcard_service import flashcard_service
 
 
 class CollectionListView:
-    def __init__(self, root, collections):
+    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards):
         self._root = root
         self._collections = collections
         self._frame = None
+        self._handle_flashcards_view = handle_flashcards_view
+        self._handle_flashcards = handle_flashcards
 
         self._initialize()
 
@@ -16,18 +18,26 @@ class CollectionListView:
     def destroy(self):
         self._frame.destroy()
 
+    def _initialize_collection(self, collection):
+        col_frame = ttk.Frame(master=self._frame)
+        label = ttk.Label(master=col_frame, text=collection.name)
+        open_collection_button = ttk.Button(master=col_frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
+        label.pack(fill=constants.X, padx=5, pady=5)
+        open_collection_button.pack()
+        col_frame.pack()
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
 
         for collection in self._collections:
-            label = ttk.Label(master=self._frame, text=collection.name)
-            label.pack(fill=constants.X, padx=5, pady=5)
+            self._initialize_collection(collection)
 
 
 class CollectionsView:
-    def __init__(self, root, handle_logout):
+    def __init__(self, root, handle_logout, handle_flashcards):
         self._root = root
         self._handle_logout = handle_logout
+        self._handle_flashcards_view = handle_flashcards
         self._frame = None
         self._collection_list_frame = None
         self._collection_list_view = None
@@ -53,7 +63,9 @@ class CollectionsView:
 
         self._collection_list_view = CollectionListView(
             self._collection_list_frame,
-            collections
+            collections,
+            self._handle_flashcards_view,
+            self._handle_flashcards
         )
 
         self._collection_list_view.pack()
@@ -65,6 +77,10 @@ class CollectionsView:
             flashcard_service.create_collection(collection_name)
             self._initialize_collection_list()
             self._create_collection_entry.delete(0, constants.END)
+
+    def _handle_flashcards(self, collection):
+        flashcard_service.open_collection(collection)
+        self._handle_flashcards_view()
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

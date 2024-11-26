@@ -31,12 +31,13 @@ class FlashcardsListView:
 
 
 class FlashcardsView:
-    def __init__(self, root, handle_practice_view):
+    def __init__(self, root, handle_practice_view, handle_collections_view):
         self._root = root
         self._frame = None
         self._flashcard_list_frame = None
         self._flashcard_list_view = None
         self._handle_practice_view = handle_practice_view
+        self._handle_collections_view = handle_collections_view
 
         self._create_flashcard_front_entry = None
         self._create_flashcard_back_entry = None
@@ -87,12 +88,15 @@ class FlashcardsView:
         self._create_flashcard_back_entry = ttk.Entry(master=self._frame)
         create_flashcard_button = ttk.Button(master=self._frame, text="Lisää flashcard", command=self._handle_create_flashcard)
         practice_collection_button = ttk.Button(master=self._frame, text="Harjoittele kokoelmaa", command=self._handle_practice_start)
+        # note: add method to empty flashcard_service current collection
+        return_to_collections_button = ttk.Button(master=self._frame, text="Takaisin kokoelmiin", command=self._handle_collections_view)
 
         header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-        practice_collection_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
-        front_label.grid(row=2, column=0, padx=5, pady=5)
-        back_label.grid(row=2, column=1, padx=5, pady=5)
-        self._create_flashcard_front_entry.grid(row=3, column=0, padx=5, pady=5)
-        self._create_flashcard_back_entry.grid(row=3, column=1, padx=5, pady=5)
-        create_flashcard_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-        self._flashcard_list_frame.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+        return_to_collections_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+        practice_collection_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+        front_label.grid(row=3, column=0, padx=5, pady=5)
+        back_label.grid(row=3, column=1, padx=5, pady=5)
+        self._create_flashcard_front_entry.grid(row=4, column=0, padx=5, pady=5)
+        self._create_flashcard_back_entry.grid(row=4, column=1, padx=5, pady=5)
+        create_flashcard_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+        self._flashcard_list_frame.grid(row=6, column=0, columnspan=2, padx=5, pady=5)

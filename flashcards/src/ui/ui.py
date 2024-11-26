@@ -39,7 +39,7 @@ class UI:
 
     def _show_flashcards_view(self):
         self._hide_current_view()
-        self._current_view = FlashcardsView(self._root, self._show_practice_view)
+        self._current_view = FlashcardsView(self._root, self._show_practice_view, self._show_collections_view)
         self._current_view.pack()
     
     def _show_practice_view(self):

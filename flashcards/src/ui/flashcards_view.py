@@ -31,11 +31,12 @@ class FlashcardsListView:
 
 
 class FlashcardsView:
-    def __init__(self, root):
+    def __init__(self, root, handle_practice_view):
         self._root = root
         self._frame = None
         self._flashcard_list_frame = None
         self._flashcard_list_view = None
+        self._handle_practice_view = handle_practice_view
 
         self._create_flashcard_front_entry = None
         self._create_flashcard_back_entry = None
@@ -79,7 +80,7 @@ class FlashcardsView:
         self._create_flashcard_front_entry = ttk.Entry(master=self._frame)
         self._create_flashcard_back_entry = ttk.Entry(master=self._frame)
         create_flashcard_button = ttk.Button(master=self._frame, text="Lisää flashcard", command=self._handle_create_flashcard)
-        practice_collection_button = ttk.Button(master=self._frame, text="Harjoittele kokoelmaa")
+        practice_collection_button = ttk.Button(master=self._frame, text="Harjoittele kokoelmaa", command=self._handle_practice_view)
 
         header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
         practice_collection_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)

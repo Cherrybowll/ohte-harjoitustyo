@@ -87,6 +87,9 @@ class FlashcardService:
 
     def get_flashcards_from_collection(self):
         return self._flashcard_repository.find_by_collection_id(self._collection.id)
+    
+    def collection_not_empty(self):
+        return len(self.get_flashcards_from_collection()) > 0
 
 
     def start_practice(self):

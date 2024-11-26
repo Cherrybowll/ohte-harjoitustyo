@@ -70,6 +70,9 @@ class FlashcardsView:
             self._create_flashcard_front_entry.delete(0, constants.END)
             self._create_flashcard_back_entry.delete(0, constants.END)
 
+    def _handle_practice_start(self):
+        if flashcard_service.collection_not_empty():
+            self._handle_practice_view()
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -83,7 +86,7 @@ class FlashcardsView:
         self._create_flashcard_front_entry = ttk.Entry(master=self._frame)
         self._create_flashcard_back_entry = ttk.Entry(master=self._frame)
         create_flashcard_button = ttk.Button(master=self._frame, text="Lisää flashcard", command=self._handle_create_flashcard)
-        practice_collection_button = ttk.Button(master=self._frame, text="Harjoittele kokoelmaa", command=self._handle_practice_view)
+        practice_collection_button = ttk.Button(master=self._frame, text="Harjoittele kokoelmaa", command=self._handle_practice_start)
 
         header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
         practice_collection_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)

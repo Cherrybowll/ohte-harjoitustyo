@@ -11,6 +11,7 @@ Sovelluksen asentaminen tarvitsee lisäksi Poetry-asennuksen.
 - [Vaatimusmäärittely](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/vaatimusmaarittely.md)
 - [Tuntikirjanpito](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/tuntikirjanpito.md)
 - [Changelog](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/changelog.md)
+- [Luokka/pakkauskaavio](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/arkkitehtuuri.md)
 
 ## Asennus
 

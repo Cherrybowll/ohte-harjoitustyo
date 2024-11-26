@@ -19,12 +19,13 @@ class CollectionListView:
         self._frame.destroy()
 
     def _initialize_collection(self, collection):
-        col_frame = ttk.Frame(master=self._frame)
-        label = ttk.Label(master=col_frame, text=collection.name)
-        open_collection_button = ttk.Button(master=col_frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
-        label.pack(fill=constants.X, padx=5, pady=5)
-        open_collection_button.pack()
-        col_frame.pack()
+        item_frame = ttk.Frame(master=self._frame)
+        label = ttk.Label(master=item_frame, text=collection.name)
+        open_collection_button = ttk.Button(master=item_frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
+
+        label.grid(row=0, column=0, padx=5, pady=5)
+        open_collection_button.grid(row=0, column=1, padx=5, pady=5)
+        item_frame.pack(fill=constants.X)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -97,8 +98,8 @@ class CollectionsView:
             master=self._frame, text="Kirjaudu ulos", command=self._logout_handler)
 
         header_label.grid(row=0, column=0, columnspan=2,
-                          sticky=constants.W, padx=5, pady=5)
-        self._collection_list_frame.grid(row=1, column=0, padx=5, pady=5)
+                          sticky=constants.EW, padx=5, pady=5)
+        self._collection_list_frame.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
         self._create_collection_entry.grid(row=2, column=0, padx=5, pady=5)
         create_collection_button.grid(row=2, column=1, padx=5, pady=5)
         logout_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)

@@ -71,3 +71,9 @@ Testikattavuusraportin html-tiedostona saa luotua komennolla
 poetry run invoke coverage-report
 ```
 Raportin polku on `htmlcov/index.html`
+
+### Pylint
+Pylint-tarkistukset voi suorittaa komennolla
+```
+poetry run invoke lint
+```

@@ -18,24 +18,24 @@ Sovelluksessa tulee lähtökohtaisesti olemaan vain tavallisia käyttäjiä elle
 
 ### Käyttäjätunnuksen hallinta
 
-- Käyttäjä voi rekisteröidä uuden käyttäjätunnuksen
+- Käyttäjä voi rekisteröidä uuden käyttäjätunnuksen [tehty]
   - Käyttäjätunnuksen tulee olla uniikki ja pituudeltaan vähintään yksi (1) merkki (saattaa muuttua myöhemmin)
-  - Käyttäjätunnukselle tulee määrittää salasana (joka annetaan kahdesti)
-- Käyttäjä voi kirjautua sisään olemassa olevalle käyttäjälle
-  - Käyttäjätunnuksen ja salasanan tulee täsmätä olemassa olevaan käyttäjään
-  - Käyttäjä ei voi tehdä sovelluksella muuta ennen käyttäjän onnistunutta rekisteröimistä ja sisäänkirjautumista
-- Käyttäjä voi kirjautua ulos sovelluksesta
+  - Käyttäjätunnukselle tulee määrittää salasana (joka annetaan kahdesti) [tehty]
+- Käyttäjä voi kirjautua sisään olemassa olevalle käyttäjälle [tehty]
+  - Käyttäjätunnuksen ja salasanan tulee täsmätä olemassa olevaan käyttäjään [tehty]
+  - Käyttäjä ei voi tehdä sovelluksessa muuta ennen käyttäjän onnistunutta rekisteröimistä ja sisäänkirjautumista [tehty]
+- Käyttäjä voi kirjautua ulos sovelluksesta [tehty]
 
 ### Flashcardit
 
-- Käyttäjä voi luoda uuden *flashcard*-kokoelman ja nimetä sen
+- Käyttäjä voi luoda uuden *flashcard*-kokoelman ja nimetä sen [tehty]
   - Kokoelman nimen tulee olla uniikki ja pituudeltaan vähintään yksi (1) merkki
-- Käyttäjä voi lisätä kokoelmaan uuden *flashcardin*
-   - Käyttäjä pystyy kirjoittamaan *flashcardin* etu- ja takapuolelle tekstiä
+- Käyttäjä voi lisätä kokoelmaan uuden *flashcardin* [tehty]
+   - Käyttäjä pystyy kirjoittamaan *flashcardin* etu- ja takapuolelle tekstiä [tehty]
      - Kummankin puolen pituus tulee alustavasti olla väliltä 1-100 merkkiä
-- Käyttäjä voi harjoitella yksittäistä kokoelmaa
-  - Käyttäjä näkee aluksi kortin etupuolen ja voi kääntää kortin
-  - Käyttäjä näkee käännetyn kortin takapuolen ja ilmoittaa osasiko sen
+- Käyttäjä voi harjoitella yksittäistä kokoelmaa [tehty]
+  - Käyttäjä näkee aluksi kortin etupuolen ja voi kääntää kortin [tehty]
+  - Käyttäjä näkee käännetyn kortin takapuolen ja ilmoittaa osasiko sen [tehty]
   - Kun kaikki *flashcardit* on käyty läpi, sovellus antaa palautteen
     - Oikeat vastaukset suhteessa korttien kokonaismäärään
     - Yksittäiset kortit (etu- ja takapuoli), jotka menivät väärin

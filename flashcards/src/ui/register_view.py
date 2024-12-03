@@ -9,6 +9,7 @@ class RegisterView:
 
         self._username_entry = None
         self._password_entry = None
+        self._password_repeat_entry = None
 
         self._handle_register = handle_register
         self._handle_login_view = handle_login_view
@@ -22,8 +23,10 @@ class RegisterView:
         self._frame.destroy()
 
     def _register_handler(self):
-        username, password = self._username_entry.get(), self._password_entry.get()
-        success = flashcard_service.create_user(username, password)
+        username = self._username_entry.get()
+        password = self._password_entry.get()
+        password_repeat = self._password_repeat_entry.get()
+        success = flashcard_service.create_user(username, password, password_repeat)
         if success:
             self._handle_register()
         else:
@@ -36,8 +39,10 @@ class RegisterView:
         header_label.config(font=("TkDefaultFont", 15, "bold"))
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi")
         self._username_entry = ttk.Entry(master=self._frame)
-        passwod_label = ttk.Label(master=self._frame, text="Salasana")
+        password_label = ttk.Label(master=self._frame, text="Salasana")
         self._password_entry = ttk.Entry(master=self._frame)
+        password_repeat_label = ttk.Label(master=self._frame, text="Salasana uudestaan")
+        self._password_repeat_entry = ttk.Entry(master=self._frame)
         register_button = ttk.Button(
             master=self._frame, text="Rekisteröidy", command=self._register_handler)
         return_login_button = ttk.Button(
@@ -48,10 +53,13 @@ class RegisterView:
         username_label.grid(row=1, column=0, padx=5, pady=5)
         self._username_entry.grid(
             row=1, column=1, sticky=(constants.EW), padx=5, pady=5)
-        passwod_label.grid(row=2, column=0, padx=5, pady=5)
+        password_label.grid(row=2, column=0, padx=5, pady=5)
         self._password_entry.grid(
             row=2, column=1, sticky=(constants.EW), padx=5, pady=5)
-        register_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
-        return_login_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
+        password_repeat_label.grid(row=3, column=0, padx=5, pady=5)
+        self._password_repeat_entry.grid(
+            row=3, column=1, sticky=(constants.EW), padx=5, pady=5)
+        register_button.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
+        return_login_button.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=300)

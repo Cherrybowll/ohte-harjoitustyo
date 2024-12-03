@@ -6,12 +6,15 @@ def validate_username(username):
         raise ValueError("Käyttäjätunnuksen maksimipituus on 20 merkkiä")
 
 
-def validate_password(password):
+def validate_password(password, password_repeat):
     if len(password) < 1:
         raise ValueError("Salasanan minimipituus on 1 merkki")
 
     if len(password) > 100:
         raise ValueError("Salasanan maksimipituus on 100 merkkiä")
+
+    if password != password_repeat:
+        raise ValueError("Salasanat eivät täsmää")
 
 
 def validate_collection_name(collection_name):

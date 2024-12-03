@@ -44,7 +44,7 @@ class FlashcardService:
     def logout(self):
         self._user = None
 
-    def create_user(self, username, password):
+    def create_user(self, username, password, password_repeat):
         if self._user_repository.find_by_username(username):
             self.set_message(f"Username {username} is already taken")
             return False
@@ -55,7 +55,7 @@ class FlashcardService:
             self.set_message(error)
             return False
         try:
-            util.validate_password(password)
+            util.validate_password(password, password_repeat)
         except ValueError as error:
             self.set_message(error)
             return False

@@ -22,3 +22,17 @@
 
 ### Sovelluksen koodia/arkkitehtuuria koskevat ominaisuudet/muutokset
 - Luokka FlashcardRepository käsittelee flashcardeja sovelluslogiikan ja tietokannan välillä
+
+## Viikko 5 (27.11-3.12)
+
+### Käyttäjää koskevat ominaisuudet/muutokset
+- Käyttäjä näkee harjoitellessa, paljonko harjoiteltavaa on jäljellä
+- Harjoittelun päätteeksi käyttäjä näkee palautteen harjoittelusta
+  - Oikein ja väärin menneiden määrät
+  - Epäonnistuneet flashcardit
+- UI-parannuksia: paremmat otsikot, kokoelma-näkymä, flashcardien separaattorit...
+
+### Sovelluksen koodia/arkkitehtuuria koskevat ominaisuudet/muutokset
+- Harjoittelun tilan säilyttämisen refaktorointi
+- Testit CollectionRepositorylle: kaikkien haku, haku tekijän perusteella, luominen...
+- Testit FlashcardRepositorylle, kaikkien haku, haku kokoelman perusteella, luominen...

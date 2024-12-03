@@ -62,12 +62,13 @@ class PracticeBackView:
 
 
 class PracticeView:
-    def __init__(self, root, handle_flashcards_view):
+    def __init__(self, root, handle_flashcards_view, handle_results_view):
         self._root = root
         self._frame = None
         self._current_flashcard_frame = None
         self._current_flashcard_view = None
         self._handle_flashcards_view = handle_flashcards_view
+        self._handle_results_view = handle_results_view
         self._collection = flashcard_service.get_collection()
         self._flashcards = flashcard_service.get_flashcards_from_collection()
         self._current_card_variable = None
@@ -99,7 +100,7 @@ class PracticeView:
                 f"{flashcard_service.current_flashcard()+1} / {len(self._flashcards)}")
             self._initialize_current_flashcard()
         else:
-            self._handle_flashcards_view()
+            self._handle_results_view()
 
     def _initialize_current_flashcard(self):
         if self._current_flashcard_view:

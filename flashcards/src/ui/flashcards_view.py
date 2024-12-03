@@ -31,8 +31,9 @@ class FlashcardsListView:
             self._initialize_flashcard(flashcard, i)
             i += 1
 
-        separator = ttk.Separator(master=self._frame, orient=constants.VERTICAL)
-        separator.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
+        if i > 0:
+            separator = ttk.Separator(master=self._frame, orient=constants.VERTICAL)
+            separator.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(2, weight=1)

@@ -4,6 +4,7 @@ from ui.register_view import RegisterView
 from ui.collections_view import CollectionsView
 from ui.flashcards_view import FlashcardsView
 from ui.practice_view import PracticeView
+from ui.results_view import ResultsView
 
 
 class UI:
@@ -47,5 +48,11 @@ class UI:
     def _show_practice_view(self):
         self._hide_current_view()
         self._current_view = PracticeView(
+            self._root, self._show_flashcards_view, self._show_results_view)
+        self._current_view.pack()
+
+    def _show_results_view(self):
+        self._hide_current_view()
+        self._current_view = ResultsView(
             self._root, self._show_flashcards_view)
         self._current_view.pack()

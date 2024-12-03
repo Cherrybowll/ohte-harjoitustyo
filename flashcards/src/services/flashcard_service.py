@@ -19,7 +19,11 @@ class FlashcardService:
         self._flashcard_repository = flashcard_repository
         self._user = None
         self._collection = None
-        self._practice_state = [0, 0, {}]
+        self._practice_state = {
+            "current_card": 0,
+            "total_cards": 0,
+            "result_list": []
+        }
 
     def login(self, username, password):
         user = self._user_repository.find_by_username(username)
@@ -81,21 +85,36 @@ class FlashcardService:
         return len(self.get_flashcards_from_collection()) > 0
 
     def start_practice(self):
-        self._practice_state[0] = 0
-        self._practice_state[1] = len(self.get_flashcards_from_collection())-1
-        self._practice_state[2] = {}
+        self._practice_state["current_card"] = 0
+        self._practice_state["total_cards"] = len(self.get_flashcards_from_collection())-1
+        self._practice_state["results_list"] = [False]*(self._practice_state["total_cards"]+1)
 
     def progress_practice(self, correct):
-        if self._practice_state[0] < self._practice_state[1]:
-            self._practice_state[2][self._practice_state[0]] = correct
-            self._practice_state[0] += 1
+        if self._practice_state["current_card"] < self._practice_state["total_cards"]:
+            self._practice_state["results_list"][self._practice_state["current_card"]] = correct
+            self._practice_state["current_card"] += 1
             return True
-        self._practice_state[2][self._practice_state[0]] = correct
-        self._practice_state = [0, 0, {}]
+
+        self._practice_state["results_list"][self._practice_state["current_card"]] = correct
         return False
 
     def current_flashcard(self):
-        return self._practice_state[0]
+        return self._practice_state["current_card"]
+    
+    # Useless?
+    def total_flashcards(self):
+        return self._practice_state["total_cards"]
+    
+    def get_practice_results_correct(self):
+        return [correct for correct in self._practice_state["results_list"] if correct]
+
+    def get_practice_results_incorrect(self):
+        return [correct for correct in self._practice_state["results_list"] if not correct]
+
+    def reset_practice_state(self):
+        self._practice_state["current_card"] = 0
+        self._practice_state["total_cards"] = 0
+        self._practice_state["results_list"] = []
 
 
 flashcard_service = FlashcardService()

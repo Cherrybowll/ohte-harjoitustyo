@@ -19,7 +19,7 @@ Sovelluksessa tulee lähtökohtaisesti olemaan vain tavallisia käyttäjiä elle
 ### Käyttäjätunnuksen hallinta
 
 - Käyttäjä voi rekisteröidä uuden käyttäjätunnuksen [tehty]
-  - Käyttäjätunnuksen tulee olla uniikki ja pituudeltaan vähintään yksi (1) merkki (saattaa muuttua myöhemmin)
+  - Käyttäjätunnuksen tulee olla uniikki ja pituudeltaan 1-20 merkkiä [tehty]
   - Käyttäjätunnukselle tulee määrittää salasana (joka annetaan kahdesti) [tehty]
 - Käyttäjä voi kirjautua sisään olemassa olevalle käyttäjälle [tehty]
   - Käyttäjätunnuksen ja salasanan tulee täsmätä olemassa olevaan käyttäjään [tehty]
@@ -29,16 +29,17 @@ Sovelluksessa tulee lähtökohtaisesti olemaan vain tavallisia käyttäjiä elle
 ### Flashcardit
 
 - Käyttäjä voi luoda uuden *flashcard*-kokoelman ja nimetä sen [tehty]
-  - Kokoelman nimen tulee olla uniikki ja pituudeltaan vähintään yksi (1) merkki
+  - Kokoelman nimen tulee olla uniikki ja pituudeltaan 1-30 merkkiä [tehty]
 - Käyttäjä voi lisätä kokoelmaan uuden *flashcardin* [tehty]
    - Käyttäjä pystyy kirjoittamaan *flashcardin* etu- ja takapuolelle tekstiä [tehty]
-     - Kummankin puolen pituus tulee alustavasti olla väliltä 1-100 merkkiä
+     - Kummankin puolen pituus tulee alustavasti olla väliltä 1-100 merkkiä [tehty]
 - Käyttäjä voi harjoitella yksittäistä kokoelmaa [tehty]
   - Käyttäjä näkee aluksi kortin etupuolen ja voi kääntää kortin [tehty]
   - Käyttäjä näkee käännetyn kortin takapuolen ja ilmoittaa osasiko sen [tehty]
-  - Kun kaikki *flashcardit* on käyty läpi, sovellus antaa palautteen
-    - Oikeat vastaukset suhteessa korttien kokonaismäärään
-    - Yksittäiset kortit (etu- ja takapuoli), jotka menivät väärin
+  - Käyttäjä näkee harjoitellun edistymisasteen (eli montako korttia jäljellä) [tehty]
+  - Kun kaikki *flashcardit* on käyty läpi, sovellus antaa palautteen [tehty]
+    - Oikeat vastaukset suhteessa korttien kokonaismäärään [tehty]
+    - Yksittäiset kortit (etu- ja takapuoli), jotka menivät väärin [tehty]
 
 ## Mahdolliset laajennukset sovellukseen
 

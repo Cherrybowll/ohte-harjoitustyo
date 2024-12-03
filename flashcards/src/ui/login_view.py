@@ -1,13 +1,13 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, messagebox
 from services.flashcard_service import flashcard_service
 
 
 class LoginView:
-    def __init__(self, root, handle_login, handle_register_view):
+    def __init__(self, root, handle_login_view, handle_register_view):
         self._root = root
         self._frame = None
 
-        self._handle_login = handle_login
+        self._handle_login_view = handle_login_view
         self._handle_register_view = handle_register_view
 
         self._username_entry = None
@@ -23,8 +23,11 @@ class LoginView:
 
     def _login_handler(self):
         username, password = self._username_entry.get(), self._password_entry.get()
-        flashcard_service.login(username, password)
-        self._handle_login()
+        success = flashcard_service.login(username, password)
+        if success:
+            self._handle_login_view()
+        else:
+            messagebox.showerror("Virhe", flashcard_service.get_message())
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

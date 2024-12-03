@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, messagebox
 from services.flashcard_service import flashcard_service
 
 
@@ -77,10 +77,13 @@ class FlashcardsView:
         flashcard_back = self._create_flashcard_back_entry.get()
 
         if flashcard_front and flashcard_back:
-            flashcard_service.create_flashcard(flashcard_front, flashcard_back)
-            self._initialize_flashcards_list()
-            self._create_flashcard_front_entry.delete(0, constants.END)
-            self._create_flashcard_back_entry.delete(0, constants.END)
+            success = flashcard_service.create_flashcard(flashcard_front, flashcard_back)
+            if success:
+                self._initialize_flashcards_list()
+                self._create_flashcard_front_entry.delete(0, constants.END)
+                self._create_flashcard_back_entry.delete(0, constants.END)
+            else:
+                messagebox.showerror("Virhe", flashcard_service.get_message())
 
     def _handle_practice_start(self):
         if flashcard_service.collection_not_empty():

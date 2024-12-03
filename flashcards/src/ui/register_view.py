@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, messagebox
 from services.flashcard_service import flashcard_service
 
 
@@ -23,8 +23,11 @@ class RegisterView:
 
     def _register_handler(self):
         username, password = self._username_entry.get(), self._password_entry.get()
-        flashcard_service.create_user(username, password)
-        self._handle_register()
+        success = flashcard_service.create_user(username, password)
+        if success:
+            self._handle_register()
+        else:
+            messagebox.showerror("Virhe", flashcard_service.get_message())
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)

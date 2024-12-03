@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, messagebox
 from services.flashcard_service import flashcard_service
 
 
@@ -40,9 +40,9 @@ class CollectionListView:
 
 
 class CollectionsView:
-    def __init__(self, root, handle_logout, handle_flashcards):
+    def __init__(self, root, handle_logout_view, handle_flashcards):
         self._root = root
-        self._handle_logout = handle_logout
+        self._handle_logout_view = handle_logout_view
         self._handle_flashcards_view = handle_flashcards
         self._frame = None
         self._collection_list_frame = None
@@ -59,7 +59,7 @@ class CollectionsView:
 
     def _logout_handler(self):
         flashcard_service.logout()
-        self._handle_logout()
+        self._handle_logout_view()
 
     def _initialize_collection_list(self):
         if self._collection_list_view:
@@ -80,9 +80,12 @@ class CollectionsView:
         collection_name = self._create_collection_entry.get()
 
         if collection_name:
-            flashcard_service.create_collection(collection_name)
-            self._initialize_collection_list()
-            self._create_collection_entry.delete(0, constants.END)
+            success = flashcard_service.create_collection(collection_name)
+            if success:
+                self._initialize_collection_list()
+                self._create_collection_entry.delete(0, constants.END)
+            else:
+                messagebox.showerror("Virhe", flashcard_service.get_message())
 
     def _handle_flashcards(self, collection):
         flashcard_service.open_collection(collection)

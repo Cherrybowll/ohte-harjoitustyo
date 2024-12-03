@@ -1,6 +1,7 @@
 from entities.collection import Collection
 from entities.flashcard import Flashcard
 from entities.user import User
+import util
 
 from repositories.user_repository import user_repository as dflt_user_repository
 from repositories.collection_repository import collection_repository as dflt_collection_repository
@@ -24,25 +25,40 @@ class FlashcardService:
             "total_cards": 0,
             "result_list": []
         }
+        self._message = None
 
     def login(self, username, password):
         user = self._user_repository.find_by_username(username)
 
         if not user:
-            raise ValueError(f"No registered users with name {username}")
+            self.set_message(f"No registered users with name {username}")
+            return False
 
         if password != user.password:
-            raise ValueError("Wrong username or password")
+            self.set_message("Wrong username or password")
+            return False
 
         self._user = user
+        return True
 
     def logout(self):
         self._user = None
 
     def create_user(self, username, password):
-        # note: check username/password criteria
         if self._user_repository.find_by_username(username):
-            raise ValueError(f"Username {username} is already taken")
+            self._message = (f"Username {username} is already taken")
+            return False
+        
+        try:
+            util.validate_username(username)
+        except ValueError as error:
+            self.set_message(error)
+            return False
+        try:
+            util.validate_password(password)
+        except ValueError as error:
+            self.set_message(error)
+            return False
 
         self._user_repository.create(User(username, password))
 
@@ -51,15 +67,25 @@ class FlashcardService:
         user = self._user_repository.find_by_username(username)
         self._user = user
 
+        return True
+
     def create_collection(self, name):
         users_collections = self._collection_repository.find_by_creator_id(
             self._user.id)
         of_same_name = list(
             filter(lambda collection: collection.name == name, users_collections))
         if of_same_name:
-            raise ValueError(f"You already have a collection named {name}")
+            self.set_message(f"You already have a collection named {name}")
+            return False
+
+        try:
+            util.validate_collection_name(name)
+        except ValueError as error:
+            self.set_message(error)
+            return False
 
         self._collection_repository.create(Collection(name, self._user.id))
+        return True
 
     def get_all_collections(self):
         return self._collection_repository.find_all()
@@ -74,9 +100,20 @@ class FlashcardService:
         return self._collection
 
     def create_flashcard(self, front, back):
-        # note: add validation
+        try:
+            util.validate_flashcard_side(front)
+        except ValueError as error:
+            self.set_message(error)
+            return False
+        try:
+            util.validate_flashcard_side(back)
+        except ValueError as error:
+            self.set_message(error)
+            return False
+
         self._flashcard_repository.create(
             Flashcard(front, back, self._collection.id))
+        return True
 
     def get_flashcards_from_collection(self):
         return self._flashcard_repository.find_by_collection_id(self._collection.id)
@@ -127,6 +164,12 @@ class FlashcardService:
         self._practice_state["current_card"] = 0
         self._practice_state["total_cards"] = 0
         self._practice_state["results_list"] = []
+    
+    def get_message(self):
+        return self._message
+
+    def set_message(self, message):
+        self._message = message
 
 
 flashcard_service = FlashcardService()

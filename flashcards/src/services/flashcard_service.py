@@ -106,10 +106,21 @@ class FlashcardService:
         return self._practice_state["total_cards"]
     
     def get_practice_results_correct(self):
-        return [correct for correct in self._practice_state["results_list"] if correct]
+        correct_results = []
+        flashcards = self.get_flashcards_from_collection()
+        for i in range(self._practice_state["total_cards"]+1):
+            if self._practice_state["results_list"][i]:
+                correct_results.append(flashcards[i])
+        return correct_results
+
 
     def get_practice_results_incorrect(self):
-        return [correct for correct in self._practice_state["results_list"] if not correct]
+        incorrect_results = []
+        flashcards = self.get_flashcards_from_collection()
+        for i in range(self._practice_state["total_cards"]+1):
+            if not self._practice_state["results_list"][i]:
+                incorrect_results.append(flashcards[i])
+        return incorrect_results
 
     def reset_practice_state(self):
         self._practice_state["current_card"] = 0

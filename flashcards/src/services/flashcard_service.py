@@ -166,7 +166,9 @@ class FlashcardService:
         self._practice_state["results_list"] = []
 
     def get_message(self):
-        return self._message
+        returned_message = self._message
+        self._message = None
+        return returned_message
 
     def set_message(self, message):
         self._message = message

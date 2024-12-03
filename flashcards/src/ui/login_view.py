@@ -31,6 +31,7 @@ class LoginView:
 
         header_label = ttk.Label(
             master=self._frame, text="Sisäänkirjautuminen")
+        header_label.config(font=("TkDefaultFont", 15, "bold"))
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi")
         self._username_entry = ttk.Entry(master=self._frame)
         passwod_label = ttk.Label(master=self._frame, text="Salasana")

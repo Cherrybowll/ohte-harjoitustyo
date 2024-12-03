@@ -93,7 +93,8 @@ class FlashcardsView:
         self._initialize_flashcards_list()
 
         header_label = ttk.Label(
-            master=self._frame, text=self._collection.name)
+            master=self._frame, text=f"Kokoelma: {self._collection.name}")
+        header_label.config(font=("TkDefaultFont", 15, "bold"))
         front_label = ttk.Label(master=self._frame, text="Etupuoli")
         back_label = ttk.Label(master=self._frame, text="Takapuoli")
         self._create_flashcard_front_entry = ttk.Entry(master=self._frame)
@@ -106,7 +107,7 @@ class FlashcardsView:
         return_to_collections_button = ttk.Button(
             master=self._frame, text="Takaisin kokoelmiin", command=self._handle_collections_view)
 
-        header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
+        header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5, sticky=constants.W)
         return_to_collections_button.grid(
             row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         practice_collection_button.grid(

@@ -96,6 +96,7 @@ class CollectionsView:
 
         header_label = ttk.Label(
             master=self._frame, text="Flashcard-kokoelmat")
+        header_label.config(font=("TkDefaultFont", 15, "bold"))
         self._create_collection_entry = ttk.Entry(master=self._frame)
         create_collection_button = ttk.Button(
             master=self._frame, text="Luo kokoelma", command=self._handle_create_collection)
@@ -103,7 +104,7 @@ class CollectionsView:
             master=self._frame, text="Kirjaudu ulos", command=self._logout_handler)
 
         header_label.grid(row=0, column=0, columnspan=2,
-                          sticky=constants.EW, padx=5, pady=5)
+                          sticky=constants.W, padx=5, pady=5)
         self._collection_list_frame.grid(
             row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         self._create_collection_entry.grid(

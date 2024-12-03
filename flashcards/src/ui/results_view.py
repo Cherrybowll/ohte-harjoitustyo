@@ -82,7 +82,8 @@ class ResultsView:
         incorrect_answers = len(self._incorrect_results)
 
         header_label = ttk.Label(
-            master=self._frame, text=self._collection.name)
+            master=self._frame, text=f"Kokoelma: {self._collection.name}")
+        header_label.config(font=("TkDefaultFont", 15, "bold"))
         return_to_flashcards_button = ttk.Button(
             master=self._frame,
             text="Palaa kokoelmaan",
@@ -103,7 +104,7 @@ class ResultsView:
                   f"({round(incorrect_answers/total_cards*100, 1)} %)")
         )
 
-        header_label.grid(row=0, column=0, padx=5, pady=5)
+        header_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
         return_to_flashcards_button.grid(row=1, column=0, padx=5, pady=5)
         correct_label.grid(row=2, column=0, padx=5, pady=5)
         incorrect_label.grid(row=3, column=0, padx=5, pady=5)

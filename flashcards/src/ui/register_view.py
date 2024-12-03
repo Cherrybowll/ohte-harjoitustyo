@@ -30,6 +30,7 @@ class RegisterView:
         self._frame = ttk.Frame(master=self._root)
 
         header_label = ttk.Label(master=self._frame, text="Rekisteröityminen")
+        header_label.config(font=("TkDefaultFont", 15, "bold"))
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi")
         self._username_entry = ttk.Entry(master=self._frame)
         passwod_label = ttk.Label(master=self._frame, text="Salasana")

@@ -24,8 +24,8 @@ class PracticeFrontView:
         turn_button = ttk.Button(
             master=item_frame, text="Käännä", command=self._handle_turn)
 
-        front_label.grid(row=0, column=0, columnspan=2)
-        turn_button.grid(row=1, column=0, columnspan=2)
+        front_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
+        turn_button.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
         item_frame.pack(fill=constants.X)
 
 
@@ -123,8 +123,9 @@ class PracticeView:
         self._initialize_current_flashcard()
 
         header_label = ttk.Label(
-            master=self._frame, text=f"Harjoitellaan kokoelmaa {self._collection.name}")
+            master=self._frame, text=f"Kokoelma: {self._collection.name}")
+        header_label.config(font=("TkDefaultFont", 15, "bold"))
 
-        header_label.grid(row=0, column=0, columnspan=2)
-        self._current_flashcard_frame.grid(row=1, column=0, columnspan=2)
-        self._current_card_label.grid(row=2, column=0)
+        header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5, sticky=constants.W)
+        self._current_flashcard_frame.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+        self._current_card_label.grid(row=2, column=0, padx=5, pady=5)

@@ -18,21 +18,24 @@ class CollectionListView:
     def destroy(self):
         self._frame.destroy()
 
-    def _initialize_collection(self, collection):
-        item_frame = ttk.Frame(master=self._frame)
-        label = ttk.Label(master=item_frame, text=collection.name)
+    def _initialize_collection(self, collection, i):
+        label = ttk.Label(master=self._frame, text=collection.name)
         open_collection_button = ttk.Button(
-            master=item_frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
+            master=self._frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
 
-        label.grid(row=0, column=0, padx=5, pady=5)
-        open_collection_button.grid(row=0, column=1, padx=5, pady=5)
-        item_frame.pack(fill=constants.X)
+        label.grid(row=i, column=0, padx=5, pady=5, sticky=constants.EW)
+        open_collection_button.grid(row=i, column=1, padx=5, pady=5, sticky=constants.EW)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+        i = 0
 
         for collection in self._collections:
-            self._initialize_collection(collection)
+            self._initialize_collection(collection, i)
+            i += 1
+        
+        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_columnconfigure(1, weight=1)
 
 
 class CollectionsView:
@@ -101,9 +104,10 @@ class CollectionsView:
         header_label.grid(row=0, column=0, columnspan=2,
                           sticky=constants.EW, padx=5, pady=5)
         self._collection_list_frame.grid(
-            row=1, column=0, columnspan=2, padx=5, pady=5)
-        self._create_collection_entry.grid(row=2, column=0, padx=5, pady=5)
-        create_collection_button.grid(row=2, column=1, padx=5, pady=5)
-        logout_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
+            row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+        self._create_collection_entry.grid(row=2, column=0, padx=5, pady=5, sticky=constants.EW)
+        create_collection_button.grid(row=2, column=1, padx=5, pady=5, sticky=constants.EW)
+        logout_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
 
-        self._frame.grid_columnconfigure(1, weight=1, minsize=300)
+        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_columnconfigure(1, weight=1)

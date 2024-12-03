@@ -26,7 +26,8 @@ class RegisterView:
         username = self._username_entry.get()
         password = self._password_entry.get()
         password_repeat = self._password_repeat_entry.get()
-        success = flashcard_service.create_user(username, password, password_repeat)
+        success = flashcard_service.create_user(
+            username, password, password_repeat)
         if success:
             self._handle_register()
         else:
@@ -41,7 +42,8 @@ class RegisterView:
         self._username_entry = ttk.Entry(master=self._frame)
         password_label = ttk.Label(master=self._frame, text="Salasana")
         self._password_entry = ttk.Entry(master=self._frame)
-        password_repeat_label = ttk.Label(master=self._frame, text="Salasana uudestaan")
+        password_repeat_label = ttk.Label(
+            master=self._frame, text="Salasana uudestaan")
         self._password_repeat_entry = ttk.Entry(master=self._frame)
         register_button = ttk.Button(
             master=self._frame, text="Rekisteröidy", command=self._register_handler)

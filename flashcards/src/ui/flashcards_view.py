@@ -77,7 +77,8 @@ class FlashcardsView:
         flashcard_back = self._create_flashcard_back_entry.get()
 
         if flashcard_front and flashcard_back:
-            success = flashcard_service.create_flashcard(flashcard_front, flashcard_back)
+            success = flashcard_service.create_flashcard(
+                flashcard_front, flashcard_back)
             if success:
                 self._initialize_flashcards_list()
                 self._create_flashcard_front_entry.delete(0, constants.END)
@@ -110,7 +111,8 @@ class FlashcardsView:
         return_to_collections_button = ttk.Button(
             master=self._frame, text="Takaisin kokoelmiin", command=self._handle_collections_view)
 
-        header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5, sticky=constants.W)
+        header_label.grid(row=0, column=0, columnspan=2,
+                          padx=5, pady=5, sticky=constants.W)
         return_to_collections_button.grid(
             row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         practice_collection_button.grid(

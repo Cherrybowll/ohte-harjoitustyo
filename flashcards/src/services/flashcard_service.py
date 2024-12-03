@@ -46,9 +46,9 @@ class FlashcardService:
 
     def create_user(self, username, password):
         if self._user_repository.find_by_username(username):
-            self._message = (f"Username {username} is already taken")
+            self.set_message(f"Username {username} is already taken")
             return False
-        
+
         try:
             util.validate_username(username)
         except ValueError as error:
@@ -164,7 +164,7 @@ class FlashcardService:
         self._practice_state["current_card"] = 0
         self._practice_state["total_cards"] = 0
         self._practice_state["results_list"] = []
-    
+
     def get_message(self):
         return self._message
 

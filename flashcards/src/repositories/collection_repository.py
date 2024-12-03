@@ -36,4 +36,5 @@ class CollectionRepository:
         cur.execute("DELETE FROM collections;")
         self._connection.commit()
 
+
 collection_repository = CollectionRepository(get_database_connection())

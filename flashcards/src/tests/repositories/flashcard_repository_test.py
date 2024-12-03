@@ -2,11 +2,12 @@ import unittest
 from repositories.flashcard_repository import flashcard_repository
 from entities.flashcard import Flashcard
 
+
 class TestFlashcardRepository(unittest.TestCase):
     def setUp(self):
         flashcard_repository.delete_all()
         flashcard_repository.create(Flashcard("front", "back", 1))
-    
+
     def test_find_by_collection_id_returns_one_if_only(self):
         flashcards = flashcard_repository.find_by_collection_id(1)
 

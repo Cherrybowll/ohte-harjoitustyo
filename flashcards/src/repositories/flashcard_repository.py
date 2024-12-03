@@ -42,5 +42,11 @@ class FlashcardRepository:
 
         self._connection.commit()
 
+    def delete_all(self):
+        cur = self._connection.cursor()
+
+        cur.execute("DELETE FROM flashcards;")
+        self._connection.commit()
+
 
 flashcard_repository = FlashcardRepository(get_database_connection())

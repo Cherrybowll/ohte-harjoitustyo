@@ -30,5 +30,10 @@ class CollectionRepository:
                     {"name": collection.name, "creator_id": collection.creator_id})
         self._connection.commit()
 
+    def delete_all(self):
+        cur = self._connection.cursor()
+
+        cur.execute("DELETE FROM collections;")
+        self._connection.commit()
 
 collection_repository = CollectionRepository(get_database_connection())

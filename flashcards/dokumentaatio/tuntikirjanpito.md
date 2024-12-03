@@ -10,4 +10,5 @@ Otin mallia referenssisovelluksesta, koska tuntikirjanpidolle ei (tietääkseni)
 | 23.11 | 1        | Pylintin käyttöönotto, flashcardien toteutuksen suunnittelua |
 | 25.11 | 3        | Metodeja flashcardien käsittelyyn sovelluslogiikaan ja tietokannan välillä, rakenteen suunnittelua |
 | 26.11 | 9        | Flashcard-näkymän ja "harjoittelun" toteutus, UI-parannuksia |
-| yht.  | 29       |   |
+| 03.12 | 11       | Harjoittelussa näkyy eteneminen, palaute harjoittelusa, UI-parannuksia, testejä repositorioille |
+| yht.  | 41       |   |

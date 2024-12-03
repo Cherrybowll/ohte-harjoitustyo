@@ -1,5 +1,10 @@
 # Flashcard-sovellus
 
+## Kuvaus
+
+Kyseessä on Anki-tyylinen flashcard-sovellus, jossa voi luoda uusia flashcard-kokoelmia ja lisätä niihin flashcardeja. Kokoelmia voi harjoitella ja harjoittelusta saa lopuksi numeerisen palautteen.
+Sovelluksessa on myös tavallista käyttäjänhallintaa (käyttäjien rekisteröinti ja sisäänkirjautuminen)
+
 ## Python-versio ja käyttöjärjestelmä
 
 Sovellus on testattu Python-versiolla 3.13.0 käyttäen alustana WSL2.

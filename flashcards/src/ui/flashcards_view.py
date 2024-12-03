@@ -16,19 +16,26 @@ class FlashcardsListView:
     def destroy(self):
         self._frame.destroy()
 
-    def _initialize_flashcard(self, flashcard):
-        item_frame = ttk.Frame(master=self._frame)
-        front_label = ttk.Label(master=item_frame, text=flashcard.front)
-        back_label = ttk.Label(master=item_frame, text=flashcard.back)
-        front_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.EW)
-        back_label.grid(row=0, column=1, padx=5, pady=5, sticky=constants.EW)
-        item_frame.pack(fill=constants.X)
+    def _initialize_flashcard(self, flashcard, i):
+        front_label = ttk.Label(master=self._frame, text=flashcard.front)
+        back_label = ttk.Label(master=self._frame, text=flashcard.back)
+
+        front_label.grid(row=i, column=0, padx=5, pady=5)
+        back_label.grid(row=i, column=2, padx=5, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
+        i = 0
 
         for flashcard in self._flashcards:
-            self._initialize_flashcard(flashcard)
+            self._initialize_flashcard(flashcard, i)
+            i += 1
+
+        separator = ttk.Separator(master=self._frame, orient=constants.VERTICAL)
+        separator.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
+
+        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_columnconfigure(2, weight=1)
 
 
 class FlashcardsView:
@@ -99,15 +106,18 @@ class FlashcardsView:
 
         header_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
         return_to_collections_button.grid(
-            row=1, column=0, columnspan=2, padx=5, pady=5)
+            row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         practice_collection_button.grid(
-            row=2, column=0, columnspan=2, padx=5, pady=5)
+            row=2, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         front_label.grid(row=3, column=0, padx=5, pady=5)
         back_label.grid(row=3, column=1, padx=5, pady=5)
         self._create_flashcard_front_entry.grid(
-            row=4, column=0, padx=5, pady=5)
-        self._create_flashcard_back_entry.grid(row=4, column=1, padx=5, pady=5)
+            row=4, column=0, padx=5, pady=5, sticky=constants.EW)
+        self._create_flashcard_back_entry.grid(row=4, column=1, padx=5, pady=5, sticky=constants.EW)
         create_flashcard_button.grid(
-            row=5, column=0, columnspan=2, padx=5, pady=5)
+            row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         self._flashcard_list_frame.grid(
-            row=6, column=0, columnspan=2, padx=5, pady=5)
+            row=6, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+
+        self._frame.grid_columnconfigure(0, weight=1)
+        self._frame.grid_columnconfigure(1, weight=1)

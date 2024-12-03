@@ -116,7 +116,8 @@ class PracticeView:
         self._current_flashcard_frame = ttk.Frame(master=self._frame)
         self._current_card_variable = StringVar()
         self._current_card_variable.set(f"1 / {len(self._flashcards)}")
-        self._current_card_label = ttk.Label(master=self._frame, textvariable=self._current_card_variable)
+        self._current_card_label = ttk.Label(
+            master=self._frame, textvariable=self._current_card_variable)
 
         flashcard_service.start_practice()
         self._initialize_current_flashcard()

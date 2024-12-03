@@ -24,7 +24,8 @@ class CollectionListView:
             master=self._frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
 
         label.grid(row=i, column=0, padx=5, pady=5, sticky=constants.EW)
-        open_collection_button.grid(row=i, column=1, padx=5, pady=5, sticky=constants.EW)
+        open_collection_button.grid(
+            row=i, column=1, padx=5, pady=5, sticky=constants.EW)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -33,7 +34,7 @@ class CollectionListView:
         for collection in self._collections:
             self._initialize_collection(collection, i)
             i += 1
-        
+
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)
 
@@ -105,9 +106,12 @@ class CollectionsView:
                           sticky=constants.EW, padx=5, pady=5)
         self._collection_list_frame.grid(
             row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
-        self._create_collection_entry.grid(row=2, column=0, padx=5, pady=5, sticky=constants.EW)
-        create_collection_button.grid(row=2, column=1, padx=5, pady=5, sticky=constants.EW)
-        logout_button.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+        self._create_collection_entry.grid(
+            row=2, column=0, padx=5, pady=5, sticky=constants.EW)
+        create_collection_button.grid(
+            row=2, column=1, padx=5, pady=5, sticky=constants.EW)
+        logout_button.grid(row=3, column=0, columnspan=2,
+                           padx=5, pady=5, sticky=constants.EW)
 
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_columnconfigure(1, weight=1)

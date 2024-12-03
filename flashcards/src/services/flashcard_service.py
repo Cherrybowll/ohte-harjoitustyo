@@ -86,8 +86,10 @@ class FlashcardService:
 
     def start_practice(self):
         self._practice_state["current_card"] = 0
-        self._practice_state["total_cards"] = len(self.get_flashcards_from_collection())-1
-        self._practice_state["results_list"] = [False]*(self._practice_state["total_cards"]+1)
+        self._practice_state["total_cards"] = len(
+            self.get_flashcards_from_collection())-1
+        self._practice_state["results_list"] = [False] * \
+            (self._practice_state["total_cards"]+1)
 
     def progress_practice(self, correct):
         if self._practice_state["current_card"] < self._practice_state["total_cards"]:
@@ -100,11 +102,11 @@ class FlashcardService:
 
     def current_flashcard(self):
         return self._practice_state["current_card"]
-    
+
     # Useless?
     def total_flashcards(self):
         return self._practice_state["total_cards"]
-    
+
     def get_practice_results_correct(self):
         correct_results = []
         flashcards = self.get_flashcards_from_collection()
@@ -112,7 +114,6 @@ class FlashcardService:
             if self._practice_state["results_list"][i]:
                 correct_results.append(flashcards[i])
         return correct_results
-
 
     def get_practice_results_incorrect(self):
         incorrect_results = []

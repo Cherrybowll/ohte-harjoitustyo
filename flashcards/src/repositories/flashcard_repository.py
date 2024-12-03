@@ -12,7 +12,10 @@ class FlashcardRepository:
         cur.execute("SELECT * FROM flashcards;")
         rows = cur.fetchall()
 
-        return [Flashcard(row["front"], row["back"], row["collection_id"], row["id"]) for row in rows]
+        return [Flashcard(row["front"],
+                          row["back"],
+                          row["collection_id"],
+                          row["id"]) for row in rows]
 
     def find_by_collection_id(self, collection_id):
         cur = self._connection.cursor()
@@ -21,7 +24,10 @@ class FlashcardRepository:
                     {"collection_id": collection_id})
         rows = cur.fetchall()
 
-        return [Flashcard(row["front"], row["back"], row["collection_id"], row["id"]) for row in rows]
+        return [Flashcard(row["front"],
+                          row["back"],
+                          row["collection_id"],
+                          row["id"]) for row in rows]
 
     def create(self, flashcard):
         cur = self._connection.cursor()

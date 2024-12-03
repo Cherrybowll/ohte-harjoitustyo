@@ -32,7 +32,8 @@ class FlashcardsListView:
             i += 1
 
         if i > 0:
-            separator = ttk.Separator(master=self._frame, orient=constants.VERTICAL)
+            separator = ttk.Separator(
+                master=self._frame, orient=constants.VERTICAL)
             separator.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
 
         self._frame.grid_columnconfigure(0, weight=1)
@@ -114,7 +115,8 @@ class FlashcardsView:
         back_label.grid(row=3, column=1, padx=5, pady=5)
         self._create_flashcard_front_entry.grid(
             row=4, column=0, padx=5, pady=5, sticky=constants.EW)
-        self._create_flashcard_back_entry.grid(row=4, column=1, padx=5, pady=5, sticky=constants.EW)
+        self._create_flashcard_back_entry.grid(
+            row=4, column=1, padx=5, pady=5, sticky=constants.EW)
         create_flashcard_button.grid(
             row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         self._flashcard_list_frame.grid(

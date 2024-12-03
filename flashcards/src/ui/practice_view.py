@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, StringVar
 from services.flashcard_service import flashcard_service
 
 
@@ -70,6 +70,7 @@ class PracticeView:
         self._handle_flashcards_view = handle_flashcards_view
         self._collection = flashcard_service.get_collection()
         self._flashcards = flashcard_service.get_flashcards_from_collection()
+        self._current_card_variable = None
 
         self._initialize()
 
@@ -85,12 +86,17 @@ class PracticeView:
 
         current = flashcard_service.current_flashcard()
         self._current_flashcard_view = PracticeBackView(
-            self._current_flashcard_frame, self._flashcards[current], self._handle_next_flashcard)
+            self._current_flashcard_frame,
+            self._flashcards[current],
+            self._handle_next_flashcard
+        )
         self._current_flashcard_view.pack()
 
     def _handle_next_flashcard(self, was_correct):
         more_cards = flashcard_service.progress_practice(was_correct)
         if more_cards:
+            self._current_card_variable.set(
+                f"{flashcard_service.current_flashcard()+1} / {len(self._flashcards)}")
             self._initialize_current_flashcard()
         else:
             self._handle_flashcards_view()
@@ -107,6 +113,9 @@ class PracticeView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._current_flashcard_frame = ttk.Frame(master=self._frame)
+        self._current_card_variable = StringVar()
+        self._current_card_variable.set(f"1 / {len(self._flashcards)}")
+        self._current_card_label = ttk.Label(master=self._frame, textvariable=self._current_card_variable)
 
         flashcard_service.start_practice()
         self._initialize_current_flashcard()
@@ -116,3 +125,4 @@ class PracticeView:
 
         header_label.grid(row=0, column=0, columnspan=2)
         self._current_flashcard_frame.grid(row=1, column=0, columnspan=2)
+        self._current_card_label.grid(row=2, column=0)

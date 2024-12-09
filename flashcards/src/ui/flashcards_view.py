@@ -3,10 +3,11 @@ from services.flashcard_service import flashcard_service
 
 
 class FlashcardsListView:
-    def __init__(self, root, flashcards):
+    def __init__(self, root, flashcards, handle_delete_flashcard):
         self._root = root
         self._frame = None
         self._flashcards = flashcards
+        self._handle_delete_flashcard = handle_delete_flashcard
 
         self._initialize()
 
@@ -19,9 +20,15 @@ class FlashcardsListView:
     def _initialize_flashcard(self, flashcard, i):
         front_label = ttk.Label(master=self._frame, text=flashcard.front)
         back_label = ttk.Label(master=self._frame, text=flashcard.back)
+        delete_button = ttk.Button(
+            master=self._frame,
+            text="Poista",
+            command=lambda: self._handle_delete_flashcard(flashcard.id)
+        )
 
-        front_label.grid(row=i, column=0, padx=5, pady=5)
-        back_label.grid(row=i, column=2, padx=5, pady=5)
+        front_label.grid(row=i, column=0, padx=10, pady=5)
+        back_label.grid(row=i, column=2, padx=10, pady=5)
+        delete_button.grid(row=i, column=4, padx=10, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -32,12 +39,12 @@ class FlashcardsListView:
             i += 1
 
         if i > 0:
-            separator = ttk.Separator(
+            separator1 = ttk.Separator(
                 master=self._frame, orient=constants.VERTICAL)
-            separator.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
-
-        self._frame.grid_columnconfigure(0, weight=1)
-        self._frame.grid_columnconfigure(2, weight=1)
+            separator2 = ttk.Separator(
+                master=self._frame, orient=constants.VERTICAL)
+            separator1.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
+            separator2.grid(row=0, column=3, rowspan=i, sticky=constants.NS)
 
 
 class FlashcardsView:
@@ -69,7 +76,7 @@ class FlashcardsView:
         flashcards = flashcard_service.get_flashcards_from_collection()
 
         self._flashcard_list_view = FlashcardsListView(
-            self._flashcard_list_frame, flashcards)
+            self._flashcard_list_frame, flashcards, self._handle_delete_flashcard)
         self._flashcard_list_view.pack()
 
     def _handle_create_flashcard(self):
@@ -85,6 +92,10 @@ class FlashcardsView:
                 self._create_flashcard_back_entry.delete(0, constants.END)
             else:
                 messagebox.showerror("Virhe", flashcard_service.get_message())
+
+    def _handle_delete_flashcard(self, flashcard_id):
+        flashcard_service.delete_flashcard(flashcard_id)
+        self._initialize_flashcards_list()
 
     def _handle_practice_start(self):
         if flashcard_service.collection_not_empty():

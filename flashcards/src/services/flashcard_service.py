@@ -118,6 +118,12 @@ class FlashcardService:
     def get_flashcards_from_collection(self):
         return self._flashcard_repository.find_by_collection_id(self._collection.id)
 
+    def delete_flashcards_from_collection(self):
+        self._flashcard_repository.delete_by_collection_id(self._collection.id)
+
+    def delete_flashcard(self, flashcard_id):
+        self._flashcard_repository.delete_by_id(flashcard_id)
+
     def collection_not_empty(self):
         return len(self.get_flashcards_from_collection()) > 0
 

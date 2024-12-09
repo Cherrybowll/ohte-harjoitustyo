@@ -3,12 +3,13 @@ from services.flashcard_service import flashcard_service
 
 
 class CollectionListView:
-    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards):
+    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection):
         self._root = root
         self._collections = collections
         self._frame = None
         self._handle_flashcards_view = handle_flashcards_view
         self._handle_flashcards = handle_flashcards
+        self._handle_delete_collection = handle_delete_collection
 
         self._initialize()
 
@@ -22,10 +23,17 @@ class CollectionListView:
         label = ttk.Label(master=self._frame, text=collection.name)
         open_collection_button = ttk.Button(
             master=self._frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
+        delete_collection_button = ttk.Button(
+            master=self._frame,
+            text="Poista",
+            command=lambda: self._handle_delete_collection(collection)
+        )
 
         label.grid(row=i, column=0, padx=5, pady=5, sticky=constants.EW)
         open_collection_button.grid(
             row=i, column=1, padx=5, pady=5, sticky=constants.EW)
+        delete_collection_button.grid(
+            row=i, column=2, padx=5, pady=5, sticky=constants.EW)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -71,7 +79,8 @@ class CollectionsView:
             self._collection_list_frame,
             collections,
             self._handle_flashcards_view,
-            self._handle_flashcards
+            self._handle_flashcards,
+            self._handle_delete_collection
         )
 
         self._collection_list_view.pack()
@@ -86,6 +95,10 @@ class CollectionsView:
                 self._create_collection_entry.delete(0, constants.END)
             else:
                 messagebox.showerror("Virhe", flashcard_service.get_message())
+    
+    def _handle_delete_collection(self, collection):
+        flashcard_service.delete_collection(collection.id)
+        self._initialize_collection_list()
 
     def _handle_flashcards(self, collection):
         flashcard_service.open_collection(collection)

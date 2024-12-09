@@ -90,6 +90,9 @@ class FlashcardService:
     def get_all_collections(self):
         return self._collection_repository.find_all()
 
+    def delete_collection(self, collection_id):
+        self._collection_repository.delete_by_id(collection_id)
+
     def open_collection(self, collection):
         self._collection = collection
 

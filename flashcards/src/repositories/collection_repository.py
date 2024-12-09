@@ -36,10 +36,11 @@ class CollectionRepository:
         cur.execute("DELETE FROM collections;")
         self._connection.commit()
 
-    def delete_by_id(self, id):
+    def delete_by_id(self, collection_id):
         cur = self._connection.cursor()
 
-        cur.execute("DELETE FROM collections WHERE id=:id", {"id":id})
+        cur.execute("DELETE FROM collections WHERE id=:id", {"id": collection_id})
         self._connection.commit()
+
 
 collection_repository = CollectionRepository(get_database_connection())

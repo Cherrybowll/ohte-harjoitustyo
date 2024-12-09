@@ -29,10 +29,10 @@ class FlashcardRepository:
                           row["collection_id"],
                           row["id"]) for row in rows]
 
-    def find_by_id(self, id):
+    def find_by_id(self, flashcard_id):
         cur = self._connection.cursor()
 
-        cur.execute("SELECT * FROM flashcards WHERE id=:id", {"id":id})
+        cur.execute("SELECT * FROM flashcards WHERE id=:id", {"id": flashcard_id})
         row = cur.fetchone()
 
         return Flashcard(
@@ -65,14 +65,14 @@ class FlashcardRepository:
         cur = self._connection.cursor()
 
         sql = "DELETE FROM flashcards WHERE collection_id=:collection_id;"
-        cur.execute(sql, {"collection_id":collection_id})
+        cur.execute(sql, {"collection_id": collection_id})
         self._connection.commit()
 
-    def delete_by_id(self, id):
+    def delete_by_id(self, flashcard_id):
         cur = self._connection.cursor()
 
         sql = "DELETE FROM flashcards WHERE id=:id;"
-        cur.execute(sql, {"id":id})
+        cur.execute(sql, {"id": flashcard_id})
         self._connection.commit()
 
 

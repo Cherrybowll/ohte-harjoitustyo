@@ -95,7 +95,7 @@ class CollectionsView:
                 self._create_collection_entry.delete(0, constants.END)
             else:
                 messagebox.showerror("Virhe", flashcard_service.get_message())
-    
+
     def _handle_delete_collection(self, collection):
         flashcard_service.delete_collection(collection.id)
         self._initialize_collection_list()

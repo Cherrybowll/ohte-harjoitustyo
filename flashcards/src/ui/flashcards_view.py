@@ -23,7 +23,7 @@ class FlashcardsListView:
         delete_button = ttk.Button(
             master=self._frame,
             text="Poista",
-            command=lambda: self._handle_delete_flashcard(flashcard.id)
+            command=lambda: self._handle_delete_flashcard(flashcard)
         )
 
         front_label.grid(row=i, column=0, padx=10, pady=5)
@@ -93,8 +93,8 @@ class FlashcardsView:
             else:
                 messagebox.showerror("Virhe", flashcard_service.get_message())
 
-    def _handle_delete_flashcard(self, flashcard_id):
-        flashcard_service.delete_flashcard(flashcard_id)
+    def _handle_delete_flashcard(self, flashcard):
+        flashcard_service.delete_flashcard(flashcard.id)
         self._initialize_flashcards_list()
 
     def _handle_practice_start(self):

@@ -45,6 +45,8 @@ class FlashcardsListView:
                 master=self._frame, orient=constants.VERTICAL)
             separator1.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
             separator2.grid(row=0, column=3, rowspan=i, sticky=constants.NS)
+        self._frame.columnconfigure(0, weight=1)
+        self._frame.columnconfigure(2, weight=1)
 
 
 class FlashcardsView:

@@ -6,4 +6,4 @@ class Collection:
         self.public = public
 
     def __str__(self):
-        return f"Collection: {self.id}, {self.name}, {self.creator_id}, public={self.public}"
+        return f"Collection: {self.id}, {self.name} by {self.creator_id}, public={self.public}"

@@ -3,10 +3,25 @@ from database_connection import get_database_connection
 
 
 class UserRepository:
+    """Class for user account related operations between database and application logic.
+
+    Attributes:
+        connection: SQLite database connection.
+    """
     def __init__(self, connection):
+        """Constructor for UserRepository.
+
+        Args:
+            connection (connection): SQLite database connection.
+        """
         self._connection = connection
 
     def find_all(self):
+        """Fetches all users from database.
+
+        Returns:
+            list: List of User entities.
+        """
         cur = self._connection.cursor()
 
         cur.execute("SELECT * FROM users;")
@@ -15,6 +30,14 @@ class UserRepository:
         return [User(row["username"], row["password"], row["id"]) for row in rows]
 
     def find_by_username(self, username):
+        """Fetches all users from database with specified username.
+
+        Args:
+            username (str): Name of user to be found
+
+        Returns:
+            User: Instance of entity User. None if user doesn't exist.
+        """
         cur = self._connection.cursor()
 
         cur.execute("SELECT * FROM users WHERE username=:username;",
@@ -24,6 +47,11 @@ class UserRepository:
         return User(row["username"], row["password"], row["id"]) if row else None
 
     def create(self, user):
+        """Stores a new user into the database.
+
+        Args:
+            user (User): Instance of entity User.
+        """
         cur = self._connection.cursor()
 
         cur.execute("INSERT INTO users (username, password) VALUES(:username, :password);",
@@ -31,6 +59,8 @@ class UserRepository:
         self._connection.commit()
 
     def delete_all(self):
+        """Deletes all users from database.
+        """
         cur = self._connection.cursor()
 
         cur.execute("DELETE FROM users;")

@@ -1,8 +1,25 @@
 # Arkkitehtuurikuvaus
 
-## Alustava luokka/pakkauskaavio
+## Rakenne
+
+Ohjelmassa on käytössä kuvanmukainen kerrosarkkitehtuuri (UI, sovelluslogiikka, tietokantaliikenne). Kuvasta ilmenee myös pakkausrakenne.
 
 ![luokkapakkauskaavio](https://github.com/user-attachments/assets/94e6a492-e709-41d1-b8e6-77e8123ae1b3)
+
+## Käyttöliittymä
+
+Käyttöliittymässä on 7 näkymää:
+- Sisäänkirjautuminen (sovelluksen aloitusnäkymä)
+- Rekisteröityminen
+- Omat flashcard-kokoelmat
+- Flashcardit (yksittäisen kokoelman sisältö)
+- Harjoittelu
+- Palaute
+- Julkiset flashcard-kokoelmat
+
+Jokaisella näkymällä on oma luokka sekä joillain näkymillä on apuluokkia näkymien sisäisten "alinäkymien" (esim. listojen) näyttämiseen. UI-luokka hoitaa näkymien vaihtamisen.
+
+Käyttöliittymä kommunikoi sovelluslogiikan (flashcard_service) kanssa, joka toteuttaa sovelluksen varsinaisen toiminnallisuuden.
 
 ## Toiminnallisuudet
 Sekvenssikaavioita joistain ei täysin itsestään selvistä ydintoiminnallisuuksista

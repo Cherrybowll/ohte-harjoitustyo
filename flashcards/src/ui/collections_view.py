@@ -73,7 +73,7 @@ class CollectionsView:
         if self._collection_list_view:
             self._collection_list_view.destroy()
 
-        collections = flashcard_service.get_all_collections()
+        collections = flashcard_service.get_collections_from_user()
 
         self._collection_list_view = CollectionListView(
             self._collection_list_frame,

@@ -5,6 +5,7 @@ from ui.collections_view import CollectionsView
 from ui.flashcards_view import FlashcardsView
 from ui.practice_view import PracticeView
 from ui.results_view import ResultsView
+from ui.public_collections_view import PublicCollectionsView
 
 
 class UI:
@@ -36,7 +37,13 @@ class UI:
     def _show_collections_view(self):
         self._hide_current_view()
         self._current_view = CollectionsView(
-            self._root, self._show_login_view, self._show_flashcards_view)
+            self._root, self._show_login_view, self._show_flashcards_view, self._show_public_collections_view)
+        self._current_view.pack()
+
+    def _show_public_collections_view(self):
+        self._hide_current_view()
+        self._current_view = PublicCollectionsView(
+            self._root, self._show_login_view, self._show_flashcards_view, self._show_collections_view)
         self._current_view.pack()
 
     def _show_flashcards_view(self):

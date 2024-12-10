@@ -90,6 +90,9 @@ class FlashcardService:
     def get_all_collections(self):
         return self._collection_repository.find_all()
 
+    def get_all_public_collections(self):
+        return self._collection_repository.find_all_public()
+
     def get_collections_from_user(self):
         return self._collection_repository.find_by_creator_id(self._user.id)
 
@@ -104,6 +107,12 @@ class FlashcardService:
 
     def get_collection(self):
         return self._collection
+    
+    def collection_toggle_public(self, collection):
+        if collection.public:
+            self._collection_repository.change_publicity(collection.id, False)
+        else:
+            self._collection_repository.change_publicity(collection.id, True)
 
     def create_flashcard(self, front, back):
         try:

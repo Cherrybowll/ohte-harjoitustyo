@@ -1,15 +1,17 @@
-from tkinter import ttk, constants, messagebox
+from tkinter import ttk, constants, messagebox, Checkbutton, BooleanVar
 from services.flashcard_service import flashcard_service
 
 
 class CollectionListView:
-    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection):
+    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection, handle_make_public):
         self._root = root
         self._collections = collections
         self._frame = None
         self._handle_flashcards_view = handle_flashcards_view
         self._handle_flashcards = handle_flashcards
         self._handle_delete_collection = handle_delete_collection
+        self._handle_make_public = handle_make_public
+        self._public_vars = [BooleanVar() for i in range(len(self._collections))]
 
         self._initialize()
 
@@ -21,6 +23,15 @@ class CollectionListView:
 
     def _initialize_collection(self, collection, i):
         label = ttk.Label(master=self._frame, text=collection.name)
+
+        self._public_vars[i].set(collection.public)
+        make_public_checkbox = ttk.Checkbutton(
+            master=self._frame,
+            text="Julkinen",
+            variable=self._public_vars[i],
+            command=lambda: self._handle_make_public(collection)
+        )
+
         open_collection_button = ttk.Button(
             master=self._frame, text="Avaa", command=lambda: self._handle_flashcards(collection))
         delete_collection_button = ttk.Button(
@@ -34,11 +45,14 @@ class CollectionListView:
             row=i, column=1, padx=5, pady=5, sticky=constants.EW)
         delete_collection_button.grid(
             row=i, column=2, padx=5, pady=5, sticky=constants.EW)
+        make_public_checkbox.grid(
+            row=i, column=3
+        )
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        i = 0
 
+        i = 0  # Index for grid row
         for collection in self._collections:
             self._initialize_collection(collection, i)
             i += 1
@@ -48,10 +62,11 @@ class CollectionListView:
 
 
 class CollectionsView:
-    def __init__(self, root, handle_logout_view, handle_flashcards):
+    def __init__(self, root, handle_logout_view, handle_flashcards_view, handle_public_collections_view):
         self._root = root
         self._handle_logout_view = handle_logout_view
-        self._handle_flashcards_view = handle_flashcards
+        self._handle_flashcards_view = handle_flashcards_view
+        self._handle_public_collections_view = handle_public_collections_view
         self._frame = None
         self._collection_list_frame = None
         self._collection_list_view = None
@@ -80,7 +95,8 @@ class CollectionsView:
             collections,
             self._handle_flashcards_view,
             self._handle_flashcards,
-            self._handle_delete_collection
+            self._handle_delete_collection,
+            self._handle_make_public
         )
 
         self._collection_list_view.pack()
@@ -97,7 +113,16 @@ class CollectionsView:
                 messagebox.showerror("Virhe", flashcard_service.get_message())
 
     def _handle_delete_collection(self, collection):
-        flashcard_service.delete_collection(collection.id)
+        user_confirmation = messagebox.askokcancel(
+            title="Kokoelman poistaminen",
+            message="Kokoelman poistaminen on peruuttamaton operaatio. Haluatko varmasti jatkaa?"
+        )
+        if user_confirmation:
+            flashcard_service.delete_collection(collection.id)
+            self._initialize_collection_list()
+
+    def _handle_make_public(self, collection):
+        flashcard_service.collection_toggle_public(collection)
         self._initialize_collection_list()
 
     def _handle_flashcards(self, collection):
@@ -113,6 +138,12 @@ class CollectionsView:
         header_label = ttk.Label(
             master=self._frame, text="Flashcard-kokoelmat")
         header_label.config(font=("TkDefaultFont", 15, "bold"))
+        view_public_button = ttk.Button(
+            master=self._frame,
+            text="Julkiset kokoelmat",
+            command=self._handle_public_collections_view
+        )
+        collections_label = ttk.Label(master=self._frame, text="Omat kokoelmat")
         self._create_collection_entry = ttk.Entry(master=self._frame)
         create_collection_button = ttk.Button(
             master=self._frame, text="Luo kokoelma", command=self._handle_create_collection)
@@ -121,13 +152,15 @@ class CollectionsView:
 
         header_label.grid(row=0, column=0, columnspan=2,
                           sticky=constants.W, padx=5, pady=5)
+        collections_label.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
+        view_public_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
         self._collection_list_frame.grid(
-            row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+            row=3, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         self._create_collection_entry.grid(
-            row=2, column=0, padx=5, pady=5, sticky=constants.EW)
+            row=4, column=0, padx=5, pady=5, sticky=constants.EW)
         create_collection_button.grid(
-            row=2, column=1, padx=5, pady=5, sticky=constants.EW)
-        logout_button.grid(row=3, column=0, columnspan=2,
+            row=4, column=1, padx=5, pady=5, sticky=constants.EW)
+        logout_button.grid(row=5, column=0, columnspan=2,
                            padx=5, pady=5, sticky=constants.EW)
 
         self._frame.grid_columnconfigure(0, weight=1)

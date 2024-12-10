@@ -22,7 +22,8 @@ def create_tables(connection):
     sql = ("CREATE TABLE collections("
            "id INTEGER PRIMARY KEY,"
            "name TEXT,"
-           "creator_id REFERENCES users"
+           "creator_id REFERENCES users,"
+           "public BOOLEAN DEFAULT FALSE"
            ");")
     cur.execute(sql)
     connection.commit()

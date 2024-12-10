@@ -12,7 +12,15 @@ class CollectionRepository:
         cur.execute("SELECT * FROM collections;")
         rows = cur.fetchall()
 
-        return [Collection(row["name"], row["creator_id"], row["id"]) for row in rows]
+        return [Collection(row["name"], row["creator_id"], row["public"], row["id"]) for row in rows]
+
+    def find_all_public(self):
+        cur = self._connection.cursor()
+
+        cur.execute("SELECT * FROM collections WHERE public=TRUE;")
+        rows = cur.fetchall()
+
+        return [Collection(row["name"], row["creator_id"], row["public"], row["id"]) for row in rows]
 
     def find_by_creator_id(self, creator_id):
         cur = self._connection.cursor()
@@ -21,13 +29,19 @@ class CollectionRepository:
                     {"creator_id": creator_id})
         rows = cur.fetchall()
 
-        return [Collection(row["name"], row["creator_id"], row["id"]) for row in rows]
+        return [Collection(row["name"], row["creator_id"], row["public"], row["id"]) for row in rows]
 
     def create(self, collection):
         cur = self._connection.cursor()
 
         cur.execute("INSERT INTO collections (name, creator_id) VALUES (:name, :creator_id);",
                     {"name": collection.name, "creator_id": collection.creator_id})
+        self._connection.commit()
+
+    def change_publicity(self, collection_id, public):
+        cur = self._connection.cursor()
+        cur.execute("UPDATE collections SET public=:public WHERE id=:id;",
+                    {"public": public, "id": collection_id})
         self._connection.commit()
 
     def delete_all(self):

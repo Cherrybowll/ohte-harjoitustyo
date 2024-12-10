@@ -32,7 +32,8 @@ class FlashcardRepository:
     def find_by_id(self, flashcard_id):
         cur = self._connection.cursor()
 
-        cur.execute("SELECT * FROM flashcards WHERE id=:id", {"id": flashcard_id})
+        cur.execute("SELECT * FROM flashcards WHERE id=:id",
+                    {"id": flashcard_id})
         row = cur.fetchone()
 
         return Flashcard(

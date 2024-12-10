@@ -29,7 +29,7 @@ class PublicCollectionListView:
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
-        
+
         i = 0  # Index for grid row
         for collection in self._collections:
             self._initialize_collection(collection, i)
@@ -94,7 +94,8 @@ class PublicCollectionsView:
             text="Omat kokoelmat",
             command=self._handle_collections_view
         )
-        collections_label = ttk.Label(master=self._frame, text="Julkiset kokoelmat")
+        collections_label = ttk.Label(
+            master=self._frame, text="Julkiset kokoelmat")
         logout_button = ttk.Button(
             master=self._frame, text="Kirjaudu ulos", command=self._logout_handler)
 

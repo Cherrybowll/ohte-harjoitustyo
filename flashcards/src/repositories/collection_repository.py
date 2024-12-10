@@ -12,7 +12,9 @@ class CollectionRepository:
         cur.execute("SELECT * FROM collections;")
         rows = cur.fetchall()
 
-        return [Collection(row["name"], row["creator_id"], row["public"], row["id"]) for row in rows]
+        return [Collection(
+            row["name"], row["creator_id"], row["public"], row["id"]
+        ) for row in rows]
 
     def find_all_public(self):
         cur = self._connection.cursor()
@@ -20,7 +22,10 @@ class CollectionRepository:
         cur.execute("SELECT * FROM collections WHERE public=TRUE;")
         rows = cur.fetchall()
 
-        return [Collection(row["name"], row["creator_id"], row["public"], row["id"]) for row in rows]
+        return [Collection(
+            row["name"], row["creator_id"], row["public"], row["id"]
+        ) for row in rows]
+
 
     def find_by_creator_id(self, creator_id):
         cur = self._connection.cursor()
@@ -29,7 +34,9 @@ class CollectionRepository:
                     {"creator_id": creator_id})
         rows = cur.fetchall()
 
-        return [Collection(row["name"], row["creator_id"], row["public"], row["id"]) for row in rows]
+        return [Collection(
+            row["name"], row["creator_id"], row["public"], row["id"]
+        ) for row in rows]
 
     def create(self, collection):
         cur = self._connection.cursor()
@@ -53,7 +60,8 @@ class CollectionRepository:
     def delete_by_id(self, collection_id):
         cur = self._connection.cursor()
 
-        cur.execute("DELETE FROM collections WHERE id=:id", {"id": collection_id})
+        cur.execute("DELETE FROM collections WHERE id=:id",
+                    {"id": collection_id})
         self._connection.commit()
 
 

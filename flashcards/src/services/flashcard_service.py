@@ -107,7 +107,7 @@ class FlashcardService:
 
     def get_collection(self):
         return self._collection
-    
+
     def collection_toggle_public(self, collection):
         if collection.public:
             self._collection_repository.change_publicity(collection.id, False)

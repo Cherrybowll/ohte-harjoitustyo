@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, messagebox, Checkbutton, BooleanVar
+from tkinter import ttk, constants, messagebox, BooleanVar
 from services.flashcard_service import flashcard_service
 
 
@@ -11,7 +11,8 @@ class CollectionListView:
         self._handle_flashcards = handle_flashcards
         self._handle_delete_collection = handle_delete_collection
         self._handle_make_public = handle_make_public
-        self._public_vars = [BooleanVar() for i in range(len(self._collections))]
+        self._public_vars = [BooleanVar()
+                             for i in range(len(self._collections))]
 
         self._initialize()
 
@@ -143,7 +144,8 @@ class CollectionsView:
             text="Julkiset kokoelmat",
             command=self._handle_public_collections_view
         )
-        collections_label = ttk.Label(master=self._frame, text="Omat kokoelmat")
+        collections_label = ttk.Label(
+            master=self._frame, text="Omat kokoelmat")
         self._create_collection_entry = ttk.Entry(master=self._frame)
         create_collection_button = ttk.Button(
             master=self._frame, text="Luo kokoelma", command=self._handle_create_collection)

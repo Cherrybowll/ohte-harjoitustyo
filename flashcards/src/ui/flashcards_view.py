@@ -18,8 +18,10 @@ class FlashcardsListView:
         self._frame.destroy()
 
     def _initialize_flashcard(self, flashcard, i):
-        front_label = ttk.Label(master=self._frame, text=flashcard.front, wraplength=300)
-        back_label = ttk.Label(master=self._frame, text=flashcard.back, wraplength=300)
+        front_label = ttk.Label(
+            master=self._frame, text=flashcard.front, wraplength=300)
+        back_label = ttk.Label(
+            master=self._frame, text=flashcard.back, wraplength=300)
         delete_button = ttk.Button(
             master=self._frame,
             text="Poista",

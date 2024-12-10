@@ -41,9 +41,19 @@ Sovelluksessa tulee lähtökohtaisesti olemaan vain tavallisia käyttäjiä elle
     - Oikeat vastaukset suhteessa korttien kokonaismäärään [tehty]
     - Yksittäiset kortit (etu- ja takapuoli), jotka menivät väärin [tehty]
 
-## Mahdolliset laajennukset sovellukseen
+## Toteutetut / toteutuvat laajennukset sovellukseen
 
 - Käyttäjä voi merkitä *flashcard*-kokoelman julkiseksi, jolloin muut käyttäjät voivat löytää sen julkisesta valikosta ja tallentaa omaksi kokoelmakseen
+  - Kokoelman voi tehdä julkiseksi [tehty]
+  - Muut käyttäjät voivat tarkastella toistensa julkisia kokoelmia [tehty]
+  - Muut käyttäjät eivät voi poistaa toisten julkisia kokoelmia [tehty]
+  - Muut käyttäjät eivät voi muokata toisten julkisia kokoelmia
+  - Muiden käyttäjien julkiset kokoelmat voi tallentaa itselleen
+
+## Mahdolliset laajennukset sovellukseen
+
+
+
 - Erilaisia *flashcard*-tyyppejä
   - Oikein/väärin -vastausvaihtoehdot
   - Kirjoitettava oikea kortin takapuoli tekstikenttään

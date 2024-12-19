@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, messagebox, BooleanVar
+from tkinter import ttk, constants, messagebox, BooleanVar, StringVar
 from services.flashcard_service import flashcard_service
 
 
@@ -13,6 +13,7 @@ class CollectionListView:
         self._handle_make_public = handle_make_public
         self._public_vars = [BooleanVar()
                              for i in range(len(self._collections))]
+        self._viewing_public = flashcard_service.get_public_view_state()
 
         self._initialize()
 
@@ -40,6 +41,9 @@ class CollectionListView:
             text="Poista",
             command=lambda: self._handle_delete_collection(collection)
         )
+        if flashcard_service.get_user_id() != collection.creator_id:
+            delete_collection_button.config(state=constants.DISABLED)
+            make_public_checkbox.config(state=constants.DISABLED)
 
         label.grid(row=i, column=0, padx=5, pady=5, sticky=constants.EW)
         open_collection_button.grid(
@@ -63,15 +67,17 @@ class CollectionListView:
 
 
 class CollectionsView:
-    def __init__(self, root, handle_logout_view, handle_flashcards_view, handle_public_collections_view):
+    def __init__(self, root, handle_logout_view, handle_flashcards_view):
         self._root = root
         self._handle_logout_view = handle_logout_view
         self._handle_flashcards_view = handle_flashcards_view
-        self._handle_public_collections_view = handle_public_collections_view
         self._frame = None
         self._collection_list_frame = None
         self._collection_list_view = None
         self._create_collection_entry = None
+        self._public_private_var = StringVar()
+        self._public_private_switch_var = StringVar()
+        self._viewing_public = flashcard_service.get_public_view_state()
 
         self._initialize()
 
@@ -89,7 +95,10 @@ class CollectionsView:
         if self._collection_list_view:
             self._collection_list_view.destroy()
 
-        collections = flashcard_service.get_collections_from_user()
+        if self._viewing_public:
+            collections = flashcard_service.get_all_public_collections()
+        else:
+            collections = flashcard_service.get_collections_from_user()
 
         self._collection_list_view = CollectionListView(
             self._collection_list_frame,
@@ -101,6 +110,17 @@ class CollectionsView:
         )
 
         self._collection_list_view.pack()
+
+    def _switch_public_private_view(self, to_public):
+        flashcard_service.set_public_view_state(to_public)
+        self._viewing_public = flashcard_service.get_public_view_state()
+        if self._viewing_public:
+            self._public_private_switch_var.set("Omat kokoelmat")
+            self._public_private_var.set("Julkiset kokoelmat")
+        else:
+            self._public_private_switch_var.set("Julkiset kokoelmat")
+            self._public_private_var.set("Omat kokoelmat")
+        self._initialize_collection_list()
 
     def _handle_create_collection(self):
         collection_name = self._create_collection_entry.get()
@@ -134,18 +154,20 @@ class CollectionsView:
         self._frame = ttk.Frame(master=self._root)
         self._collection_list_frame = ttk.Frame(master=self._frame)
 
+        self._switch_public_private_view(self._viewing_public)
+
         self._initialize_collection_list()
 
         header_label = ttk.Label(
             master=self._frame, text="Flashcard-kokoelmat")
         header_label.config(font=("TkDefaultFont", 15, "bold"))
-        view_public_button = ttk.Button(
+        switch_view_public_button = ttk.Button(
             master=self._frame,
-            text="Julkiset kokoelmat",
-            command=self._handle_public_collections_view
+            textvariable=self._public_private_switch_var,
+            command=lambda: self._switch_public_private_view(not self._viewing_public)
         )
         collections_label = ttk.Label(
-            master=self._frame, text="Omat kokoelmat")
+            master=self._frame, textvariable=self._public_private_var)
         self._create_collection_entry = ttk.Entry(master=self._frame)
         create_collection_button = ttk.Button(
             master=self._frame, text="Luo kokoelma", command=self._handle_create_collection)
@@ -155,7 +177,7 @@ class CollectionsView:
         header_label.grid(row=0, column=0, columnspan=2,
                           sticky=constants.W, padx=5, pady=5)
         collections_label.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
-        view_public_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+        switch_view_public_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
         self._collection_list_frame.grid(
             row=3, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         self._create_collection_entry.grid(

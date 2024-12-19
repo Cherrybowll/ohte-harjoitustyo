@@ -25,6 +25,7 @@ class FlashcardService:
             "total_cards": 0,
             "result_list": []
         }
+        self._viewing_public = False
         self._message = None
 
     def login(self, username, password):
@@ -43,6 +44,9 @@ class FlashcardService:
 
     def logout(self):
         self._user = None
+
+    def get_user_id(self):
+        return self._user.id
 
     def create_user(self, username, password, password_repeat):
         if self._user_repository.find_by_username(username):
@@ -113,6 +117,12 @@ class FlashcardService:
             self._collection_repository.change_publicity(collection.id, False)
         else:
             self._collection_repository.change_publicity(collection.id, True)
+
+    def set_public_view_state(self, view: bool):
+        self._viewing_public = view
+
+    def get_public_view_state(self):
+        return self._viewing_public
 
     def create_flashcard(self, front, back):
         try:

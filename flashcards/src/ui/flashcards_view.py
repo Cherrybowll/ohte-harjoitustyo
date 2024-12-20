@@ -29,12 +29,12 @@ class FlashcardsListView:
             text="Poista",
             command=lambda: self._handle_delete_flashcard(flashcard)
         )
-        if self._user_id != self._collection.creator_id:
-            delete_button.config(state=constants.DISABLED)
 
         front_label.grid(row=i, column=0, padx=10, pady=5)
         back_label.grid(row=i, column=2, padx=10, pady=5)
-        delete_button.grid(row=i, column=4, padx=10, pady=5)
+
+        if self._user_id == self._collection.creator_id:
+            delete_button.grid(row=i, column=4, padx=10, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -50,7 +50,8 @@ class FlashcardsListView:
             separator2 = ttk.Separator(
                 master=self._frame, orient=constants.VERTICAL)
             separator1.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
-            separator2.grid(row=0, column=3, rowspan=i, sticky=constants.NS)
+            if self._user_id == self._collection.creator_id:
+                separator2.grid(row=0, column=3, rowspan=i, sticky=constants.NS)
         self._frame.columnconfigure(0, weight=1)
         self._frame.columnconfigure(2, weight=1)
 
@@ -129,11 +130,6 @@ class FlashcardsView:
         # note: add method to empty flashcard_service current collection
         return_to_collections_button = ttk.Button(
             master=self._frame, text="Takaisin kokoelmiin", command=self._handle_collections_view)
-
-        if flashcard_service.get_user_id() != self._collection.creator_id:
-            self._create_flashcard_front_entry.config(state=constants.DISABLED)
-            self._create_flashcard_back_entry.config(state=constants.DISABLED)
-            create_flashcard_button.config(state=constants.DISABLED)
 
         header_label.grid(row=0, column=0, columnspan=2,
                           padx=5, pady=5, sticky=constants.W)

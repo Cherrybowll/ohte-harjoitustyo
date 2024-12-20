@@ -3,10 +3,12 @@ from services.flashcard_service import flashcard_service
 
 
 class FlashcardsListView:
-    def __init__(self, root, flashcards, handle_delete_flashcard):
+    def __init__(self, root, flashcards, collection, handle_delete_flashcard):
         self._root = root
         self._frame = None
         self._flashcards = flashcards
+        self._collection = collection
+        self._user_id = flashcard_service.get_user_id()
         self._handle_delete_flashcard = handle_delete_flashcard
 
         self._initialize()
@@ -27,6 +29,8 @@ class FlashcardsListView:
             text="Poista",
             command=lambda: self._handle_delete_flashcard(flashcard)
         )
+        if self._user_id != self._collection.creator_id:
+            delete_button.config(state=constants.DISABLED)
 
         front_label.grid(row=i, column=0, padx=10, pady=5)
         back_label.grid(row=i, column=2, padx=10, pady=5)
@@ -80,7 +84,7 @@ class FlashcardsView:
         flashcards = flashcard_service.get_flashcards_from_collection()
 
         self._flashcard_list_view = FlashcardsListView(
-            self._flashcard_list_frame, flashcards, self._handle_delete_flashcard)
+            self._flashcard_list_frame, flashcards, self._collection, self._handle_delete_flashcard)
         self._flashcard_list_view.pack()
 
     def _handle_create_flashcard(self):
@@ -126,20 +130,27 @@ class FlashcardsView:
         return_to_collections_button = ttk.Button(
             master=self._frame, text="Takaisin kokoelmiin", command=self._handle_collections_view)
 
+        if flashcard_service.get_user_id() != self._collection.creator_id:
+            self._create_flashcard_front_entry.config(state=constants.DISABLED)
+            self._create_flashcard_back_entry.config(state=constants.DISABLED)
+            create_flashcard_button.config(state=constants.DISABLED)
+
         header_label.grid(row=0, column=0, columnspan=2,
                           padx=5, pady=5, sticky=constants.W)
         return_to_collections_button.grid(
             row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         practice_collection_button.grid(
             row=2, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
-        front_label.grid(row=3, column=0, padx=5, pady=5)
-        back_label.grid(row=3, column=1, padx=5, pady=5)
-        self._create_flashcard_front_entry.grid(
-            row=4, column=0, padx=5, pady=5, sticky=constants.EW)
-        self._create_flashcard_back_entry.grid(
-            row=4, column=1, padx=5, pady=5, sticky=constants.EW)
-        create_flashcard_button.grid(
-            row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+        
+        if flashcard_service.get_user_id() == self._collection.creator_id:
+            self._create_flashcard_front_entry.grid(
+                row=4, column=0, padx=5, pady=5, sticky=constants.EW)
+            self._create_flashcard_back_entry.grid(
+                row=4, column=1, padx=5, pady=5, sticky=constants.EW)
+            create_flashcard_button.grid(
+                row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+            front_label.grid(row=3, column=0, padx=5, pady=5)
+            back_label.grid(row=3, column=1, padx=5, pady=5)
         self._flashcard_list_frame.grid(
             row=6, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
 

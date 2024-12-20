@@ -94,7 +94,7 @@ class FlashcardsView:
 
         if flashcard_front and flashcard_back:
             success = flashcard_service.create_flashcard(
-                flashcard_front, flashcard_back)
+                flashcard_front, flashcard_back, self._collection.id)
             if success:
                 self._initialize_flashcards_list()
                 self._create_flashcard_front_entry.delete(0, constants.END)

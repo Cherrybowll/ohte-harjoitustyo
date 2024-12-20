@@ -124,7 +124,7 @@ class FlashcardService:
     def get_public_view_state(self):
         return self._viewing_public
 
-    def create_flashcard(self, front, back):
+    def create_flashcard(self, front, back, collection_id):
         try:
             util.validate_flashcard_side(front)
         except ValueError as error:
@@ -137,7 +137,7 @@ class FlashcardService:
             return False
 
         self._flashcard_repository.create(
-            Flashcard(front, back, self._collection.id))
+            Flashcard(front, back, collection_id))
         return True
 
     def get_flashcards_from_collection(self):

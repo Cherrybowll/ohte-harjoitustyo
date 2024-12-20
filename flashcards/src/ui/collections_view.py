@@ -6,6 +6,7 @@ class CollectionListView:
     def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection, handle_make_public):
         self._root = root
         self._collections = collections
+        self._user_id = flashcard_service.get_user_id()
         self._frame = None
         self._handle_flashcards_view = handle_flashcards_view
         self._handle_flashcards = handle_flashcards
@@ -41,7 +42,7 @@ class CollectionListView:
             text="Poista",
             command=lambda: self._handle_delete_collection(collection)
         )
-        if flashcard_service.get_user_id() != collection.creator_id:
+        if self._user_id != collection.creator_id:
             delete_collection_button.config(state=constants.DISABLED)
             make_public_checkbox.config(state=constants.DISABLED)
 

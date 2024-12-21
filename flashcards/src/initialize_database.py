@@ -15,14 +15,14 @@ def create_tables(connection):
            "id INTEGER PRIMARY KEY,"
            "front TEXT,"
            "back TEXT,"
-           "collection_id REFERENCES collections"
+           "collection_id REFERENCES collections ON DELETE CASCADE"
            ");")
     cur.execute(sql)
 
     sql = ("CREATE TABLE collections("
            "id INTEGER PRIMARY KEY,"
            "name TEXT,"
-           "creator_id REFERENCES users,"
+           "creator_id REFERENCES users ON DELETE CASCADE,"
            "public BOOLEAN DEFAULT FALSE"
            ");")
     cur.execute(sql)
@@ -32,9 +32,9 @@ def create_tables(connection):
 def drop_tables(connection):
     cur = connection.cursor()
 
-    cur.execute("DROP TABLE IF EXISTS users;")
     cur.execute("DROP TABLE IF EXISTS flashcards;")
     cur.execute("DROP TABLE IF EXISTS collections;")
+    cur.execute("DROP TABLE IF EXISTS users;")
     connection.commit()
 
 

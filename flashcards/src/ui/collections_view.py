@@ -1,9 +1,9 @@
-from tkinter import ttk, constants, messagebox, BooleanVar, StringVar
+from tkinter import ttk, constants, messagebox, BooleanVar, StringVar, simpledialog
 from services.flashcard_service import flashcard_service
 
 
 class CollectionListView:
-    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection, handle_make_public):
+    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection, handle_copy_collection, handle_make_public):
         self._root = root
         self._collections = collections
         self._user_id = flashcard_service.get_user_id()
@@ -11,6 +11,7 @@ class CollectionListView:
         self._handle_flashcards_view = handle_flashcards_view
         self._handle_flashcards = handle_flashcards
         self._handle_delete_collection = handle_delete_collection
+        self._handle_copy_collection = handle_copy_collection
         self._handle_make_public = handle_make_public
         self._public_vars = [BooleanVar()
                              for i in range(len(self._collections))]
@@ -42,6 +43,11 @@ class CollectionListView:
             text="Poista",
             command=lambda: self._handle_delete_collection(collection)
         )
+        copy_collection_button = ttk.Button(
+            master=self._frame,
+            text="Kopioi",
+            command=lambda: self._handle_copy_collection(collection)
+        )
         if self._user_id != collection.creator_id:
             delete_collection_button.config(state=constants.DISABLED)
             make_public_checkbox.config(state=constants.DISABLED)
@@ -51,8 +57,10 @@ class CollectionListView:
             row=i, column=1, padx=5, pady=5, sticky=constants.EW)
         delete_collection_button.grid(
             row=i, column=2, padx=5, pady=5, sticky=constants.EW)
+        copy_collection_button.grid(
+            row=i, column=3, padx=5, pady=5, sticky=constants.EW)
         make_public_checkbox.grid(
-            row=i, column=3
+            row=i, column=4
         )
 
     def _initialize(self):
@@ -107,6 +115,7 @@ class CollectionsView:
             self._handle_flashcards_view,
             self._handle_flashcards,
             self._handle_delete_collection,
+            self._handle_copy_collection,
             self._handle_make_public
         )
 
@@ -141,6 +150,24 @@ class CollectionsView:
         )
         if user_confirmation:
             flashcard_service.delete_collection(collection.id)
+            self._initialize_collection_list()
+
+    def _handle_copy_collection(self, collection):
+        copy_name = simpledialog.askstring(
+            "Kopio", "Anna kopiolle nimi:", initialvalue=f"{collection.name}_kopio")
+        if copy_name == None:
+            return
+
+        success = flashcard_service.create_collection(copy_name)
+        if success:
+            copy_collection = flashcard_service.get_collection_from_user_with_name(
+                flashcard_service.get_user_id(), copy_name
+            )
+            copy_flashcards = flashcard_service.get_flashcards_from_collection(collection)
+            print(copy_flashcards)
+            for flashcard in copy_flashcards:
+                flashcard_service.create_flashcard(
+                    flashcard.front, flashcard.back, copy_collection.id)
             self._initialize_collection_list()
 
     def _handle_make_public(self, collection):

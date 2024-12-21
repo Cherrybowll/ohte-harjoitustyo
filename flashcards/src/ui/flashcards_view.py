@@ -82,7 +82,7 @@ class FlashcardsView:
         if self._flashcard_list_view:
             self._flashcard_list_view.destroy()
 
-        flashcards = flashcard_service.get_flashcards_from_collection()
+        flashcards = flashcard_service.get_flashcards_from_collection(self._collection)
 
         self._flashcard_list_view = FlashcardsListView(
             self._flashcard_list_frame, flashcards, self._collection, self._handle_delete_flashcard)

@@ -74,11 +74,7 @@ class FlashcardService:
         return True
 
     def create_collection(self, name):
-        users_collections = self._collection_repository.find_by_creator_id(
-            self._user.id)
-        of_same_name = list(
-            filter(lambda collection: collection.name == name, users_collections))
-        if of_same_name:
+        if self.get_collection_from_user_with_name(self._user.id, name):
             self.set_message(f"You already have a collection named {name}")
             return False
 
@@ -99,6 +95,15 @@ class FlashcardService:
 
     def get_collections_from_user(self):
         return self._collection_repository.find_by_creator_id(self._user.id)
+
+    def get_collection_from_user_with_name(self, user_id, collection_name):
+        users_collections = self._collection_repository.find_by_creator_id(
+            user_id)
+        of_same_name = list(
+            filter(lambda collection: collection.name == collection_name, users_collections))
+        if of_same_name:
+            return of_same_name[0]
+        return None
 
     def delete_collection(self, collection_id):
         self._collection_repository.delete_by_id(collection_id)
@@ -140,8 +145,8 @@ class FlashcardService:
             Flashcard(front, back, collection_id))
         return True
 
-    def get_flashcards_from_collection(self):
-        return self._flashcard_repository.find_by_collection_id(self._collection.id)
+    def get_flashcards_from_collection(self, collection):
+        return self._flashcard_repository.find_by_collection_id(collection.id)
 
     def delete_flashcards_from_collection(self):
         self._flashcard_repository.delete_by_collection_id(self._collection.id)

@@ -6,6 +6,7 @@ from ui.flashcards_view import FlashcardsView
 from ui.practice_view import PracticeView
 from ui.results_view import ResultsView
 from ui.public_collections_view import PublicCollectionsView
+from config import colors
 
 
 class UI:
@@ -67,9 +68,9 @@ class UI:
         self._current_view.pack()
 
     def _default_style(self):
-        bg_color = "#E5C3A7"
-        text_color = "#FFFFFF"
-        btn_color = "#E5A970"
+        bg_color = colors["bg"]
+        text_color = colors["text"]
+        btn_color = colors["button"]
 
         self._root.option_add("*Background", bg_color)
         self._root.option_add("*Foreground", text_color)

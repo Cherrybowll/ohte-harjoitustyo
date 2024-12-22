@@ -15,7 +15,7 @@ hakemistossa `tests/repositories`. Testit käyttävät `.env.test`-tiedostossa m
 
 ### Testauskattavuus
 
-tähän kuva
+Testauskattavuus on yli 70%. Testien ulkopuolelle jäi käyttöliittymä sekä `index.py`.
 
 ## Järjestelmätestaus
 

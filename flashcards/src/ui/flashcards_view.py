@@ -3,7 +3,17 @@ from services.flashcard_service import flashcard_service
 
 
 class FlashcardsListView:
+    """Class for creating the list view of flashcards.
+    """
     def __init__(self, root, flashcards, collection, handle_delete_flashcard):
+        """Class constructor for FlashcardsListView.
+
+        Args:
+            root (ttk.Frame): The parent Frame.
+            flashcards (list): list of Flashcard entities.
+            collection (Collection): list of Collection entities.
+            handle_delete_flashcard (funct): Method to be called when deleting flashcard. Takes a Flashcard entity as argument.
+        """
         self._root = root
         self._frame = None
         self._flashcards = flashcards
@@ -14,9 +24,13 @@ class FlashcardsListView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize_flashcard(self, flashcard, i):
@@ -57,7 +71,16 @@ class FlashcardsListView:
 
 
 class FlashcardsView:
+    """Class for creating the flashcards (contents of collection) view.
+    """
     def __init__(self, root, handle_practice_view, handle_collections_view):
+        """Class constructor for FlashcardsView.
+
+        Args:
+            root (Tk): Top-level Tkinter element.
+            handle_practice_view (funct): Method for showing the practice view.
+            handle_collections_view (funct): Method for showing the collections view.
+        """
         self._root = root
         self._frame = None
         self._flashcard_list_frame = None
@@ -73,9 +96,13 @@ class FlashcardsView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize_flashcards_list(self):

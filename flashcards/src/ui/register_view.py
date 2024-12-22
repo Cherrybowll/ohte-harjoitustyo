@@ -3,7 +3,16 @@ from services.flashcard_service import flashcard_service
 
 
 class RegisterView:
+    """Class for showing the register view.
+    """
     def __init__(self, root, handle_register, handle_login_view):
+        """Class constructor for RegisterView.
+
+        Args:
+            root (Tk): Top-level Tkinter element.
+            handle_register (funct): Handles the registering process.
+            handle_login_view (funct): Handles showing the login view.
+        """
         self._root = root
         self._frame = None
 
@@ -17,9 +26,13 @@ class RegisterView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _register_handler(self):

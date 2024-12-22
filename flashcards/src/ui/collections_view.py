@@ -3,12 +3,25 @@ from services.flashcard_service import flashcard_service
 
 
 class CollectionListView:
+    """Class for showing the list view for collections.
+    """
     def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection, handle_copy_collection, handle_make_public):
+        """Class constructor for CollectionListView.
+
+        Args:
+            root (ttk.Frame): The parent Frame.
+            collections (list): list of Collection entities.
+            handle_flashcards_view (funct): Handles showing the flashcards view.
+            handle_flashcards (funct): Handles showing the flashcards view.
+            handle_delete_collection (funct): Handles deleting the collection.
+            handle_copy_collection (funct): Handles copying the collection.
+            handle_make_public (funct): Handles toggling the publicity status of the collection.
+        """
         self._root = root
         self._collections = collections
         self._user_id = flashcard_service.get_user_id()
         self._frame = None
-        self._handle_flashcards_view = handle_flashcards_view
+        self._handle_flashcards_view = handle_flashcards_view # USELESS
         self._handle_flashcards = handle_flashcards
         self._handle_delete_collection = handle_delete_collection
         self._handle_copy_collection = handle_copy_collection
@@ -20,9 +33,13 @@ class CollectionListView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize_collection(self, collection, i):
@@ -76,9 +93,18 @@ class CollectionListView:
 
 
 class CollectionsView:
-    def __init__(self, root, handle_logout_view, handle_flashcards_view):
+    """Class for showing the collections view.
+    """
+    def __init__(self, root, handle_login_view, handle_flashcards_view):
+        """Class constructor for CollectionsView.
+
+        Args:
+            root (Tk): Top-level Tkinter element.
+            handle_login_view (funct): Handles showing the login view.
+            handle_flashcards_view (funct): Handles showing the flashcard view.
+        """
         self._root = root
-        self._handle_logout_view = handle_logout_view
+        self._handle_login_view = handle_login_view
         self._handle_flashcards_view = handle_flashcards_view
         self._frame = None
         self._collection_list_frame = None
@@ -91,14 +117,18 @@ class CollectionsView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _logout_handler(self):
         flashcard_service.logout()
-        self._handle_logout_view()
+        self._handle_login_view()
 
     def _initialize_collection_list(self):
         if self._collection_list_view:

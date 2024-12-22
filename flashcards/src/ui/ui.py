@@ -10,39 +10,57 @@ from config import COLOR_SCHEME
 
 
 class UI:
+    """Class for switching between UI views. Also sets the correct color scheme.
+    """
     def __init__(self, root):
+        """Class constructor for UI.
+
+        Args:
+            root (Tk): Top-level Tkinter element and interpreter.
+        """
         self._root = root
         self._current_view = None
         self._style = ttk.Style()
-        self._default_style()
+        self._set_style()
 
     def start(self):
+        """Sets the first UI view, which is the login view.
+        """
         self._show_login_view()
 
     def _hide_current_view(self):
+        """Hides the current view so that a new one can be set.
+        """
         if self._current_view:
             self._current_view.destroy()
 
         self._current_view = None
 
     def _show_login_view(self):
+        """Shows the login view.
+        """
         self._hide_current_view()
         self._current_view = LoginView(
             self._root, self._show_collections_view, self._show_register_view)
         self._current_view.pack()
 
     def _show_register_view(self):
+        """Shows the register view.
+        """
         self._hide_current_view()
         self._current_view = RegisterView(
             self._root, self._show_collections_view, self._show_login_view)
         self._current_view.pack()
 
     def _show_collections_view(self):
+        """Shows the collections view.
+        """
         self._hide_current_view()
         self._current_view = CollectionsView(
             self._root, self._show_login_view, self._show_flashcards_view)
         self._current_view.pack()
 
+    # USELESS
     def _show_public_collections_view(self):
         self._hide_current_view()
         self._current_view = PublicCollectionsView(
@@ -50,24 +68,32 @@ class UI:
         self._current_view.pack()
 
     def _show_flashcards_view(self):
+        """Shows the flashcards view (contents of collection).
+        """
         self._hide_current_view()
         self._current_view = FlashcardsView(
             self._root, self._show_practice_view, self._show_collections_view)
         self._current_view.pack()
 
     def _show_practice_view(self):
+        """Shows the practice view.
+        """
         self._hide_current_view()
         self._current_view = PracticeView(
             self._root, self._show_flashcards_view, self._show_results_view)
         self._current_view.pack()
 
     def _show_results_view(self):
+        """Shows the practice results view.
+        """
         self._hide_current_view()
         self._current_view = ResultsView(
             self._root, self._show_flashcards_view)
         self._current_view.pack()
 
-    def _default_style(self):
+    def _set_style(self):
+        """Sets the color scheme for the application.
+        """
         bg_color, text_color, btn_color = "", "", ""
         match COLOR_SCHEME:
             case "orange":

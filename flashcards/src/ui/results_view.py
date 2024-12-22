@@ -3,7 +3,15 @@ from services.flashcard_service import flashcard_service
 
 
 class ResultsListView:
+    """Class for showing the list view of results (used for incorrect flashcards)
+    """
     def __init__(self, root, subflashcards):
+        """Class constructor for ResultsListView.
+
+        Args:
+            root (ttk.Frame): The parent Frame.
+            subflashcards (list): list of Flashcard entities.
+        """
         self._root = root
         self._frame = None
         self._subflashcards = subflashcards
@@ -11,9 +19,13 @@ class ResultsListView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize_flashcard(self, flashcard, i):
@@ -41,7 +53,15 @@ class ResultsListView:
 
 
 class ResultsView:
+    """Class for showing the results view.
+    """
     def __init__(self, root, handle_flashcards_view):
+        """Class constructor for ResultsView.
+
+        Args:
+            root (Tk): Top-level Tkinter element.
+            handle_flashcards_view (funct): Method for showing the flashcards view.
+        """
         self._root = root
         self._frame = None
         self._subflashcard_list_frame = None
@@ -56,9 +76,13 @@ class ResultsView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize_subflashcard_list(self):

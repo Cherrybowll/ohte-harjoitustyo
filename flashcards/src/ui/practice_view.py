@@ -3,7 +3,16 @@ from services.flashcard_service import flashcard_service
 
 
 class PracticeFrontView:
+    """Class for showing the front side of the current Flashcard in practice mode.
+    """
     def __init__(self, root, flashcard, handle_turn):
+        """Class constructor for PracticeFrontView.
+
+        Args:
+            root (ttk.Frame): The parent Frame.
+            flashcard (Flashcard): a Flashcard entity.
+            handle_turn (funct): Handles turning the flashcard backside.
+        """
         self._root = root
         self._frame = None
         self._flashcard = flashcard
@@ -12,9 +21,13 @@ class PracticeFrontView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize(self):
@@ -30,7 +43,16 @@ class PracticeFrontView:
 
 
 class PracticeBackView:
+    """Class for showing the back side of the current Flashcard in practice mode.
+    """
     def __init__(self, root, flashcard, handle_next):
+        """Class constructor for PracticeBackView.
+
+        Args:
+            root (ttk.Frame): The parent Frame.
+            flashcard (Flashcard): a Flashcard entity.
+            handle_next (funct): Handles progressing the practice state and view.
+        """
         self._root = root
         self._frame = None
         self._flashcard = flashcard
@@ -39,9 +61,13 @@ class PracticeBackView:
         self._initialize()
 
     def pack(self):
+        """Shows the view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the view.
+        """
         self._frame.destroy()
 
     def _initialize(self):
@@ -62,7 +88,16 @@ class PracticeBackView:
 
 
 class PracticeView:
+    """Class for showing the practice mode view.
+    """
     def __init__(self, root, handle_flashcards_view, handle_results_view):
+        """Class constructor for PracticeView.
+
+        Args:
+            root (Tk): Top-level Tkinter element.
+            handle_flashcards_view (funct): Handles showing the flashcards view.
+            handle_results_view (funct): Handles showing the results view.
+        """
         self._root = root
         self._frame = None
         self._current_flashcard_frame = None
@@ -76,9 +111,13 @@ class PracticeView:
         self._initialize()
 
     def pack(self):
+        """Shows the current view.
+        """
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
+        """Destroys the current view.
+        """
         self._frame.destroy()
 
     def _handle_turn_flashcard(self):

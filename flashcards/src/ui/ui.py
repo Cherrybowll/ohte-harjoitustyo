@@ -12,6 +12,8 @@ class UI:
     def __init__(self, root):
         self._root = root
         self._current_view = None
+        self._style = ttk.Style()
+        self._default_style()
 
     def start(self):
         self._show_login_view()
@@ -63,3 +65,16 @@ class UI:
         self._current_view = ResultsView(
             self._root, self._show_flashcards_view)
         self._current_view.pack()
+
+    def _default_style(self):
+        bg_color = "#E5C3A7"
+        text_color = "#FFFFFF"
+        btn_color = "#E5A970"
+
+        self._root.option_add("*Background", bg_color)
+        self._root.option_add("*Foreground", text_color)
+
+        self._style.configure("TFrame", background=bg_color)
+        self._style.configure("TLabel", background=bg_color, foreground=text_color)
+        self._style.configure("TCheckbutton", background=bg_color, foreground=text_color)
+        self._style.configure("TButton", background=btn_color, foreground=text_color)

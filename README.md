@@ -2,14 +2,15 @@
 
 ## Kuvaus
 
-Kyseessä on Anki-tyylinen flashcard-sovellus, jossa voi luoda uusia flashcard-kokoelmia ja lisätä niihin flashcardeja. Kokoelmia voi harjoitella ja harjoittelusta saa lopuksi numeerisen palautteen.
+Kyseessä on Anki-tyylinen flashcard-sovellus, jossa voi luoda uusia flashcard-kokoelmia ja lisätä niihin flashcardeja. Kokoelmista voi myös tehdä julkisia, jolloin ne näkyvät muille käyttäjille ja kokoelmia voi kopioida.
+Kokoelmia voi harjoitella ja harjoittelusta saa lopuksi numeerisen palautteen.
 Sovelluksessa on myös tavallista käyttäjänhallintaa (käyttäjien rekisteröinti ja sisäänkirjautuminen)
 
 ## Release
 
-[Viikon 6 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko6)
+- [Viikon 6 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko6)
 
-[Viikon 5 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko5)
+- [Viikon 5 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko5)
 
 ## Python-versio ja käyttöjärjestelmä
 
@@ -24,12 +25,15 @@ Sovelluksen asentaminen tarvitsee lisäksi Poetry-asennuksen.
 - [Changelog](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/changelog.md)
 - [Luokka/pakkauskaavio](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/arkkitehtuuri.md)
 - [Käyttöohje](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/kayttoohje.md)
+- [Testausdokumentti](https://github.com/Cherrybowll/ohte-harjoitustyo/blob/master/flashcards/dokumentaatio/testaus.md)
 
 ## Asennus
 
 1. Hae repositorio laitteellesi joko lataamalla selaimesta tai kloonaamalla jommalla kummalla komennoista (SSH/HTTPS)
 ```
 git@github.com:Cherrybowll/ohte-harjoitustyo.git
+```
+```
 git clone https://github.com/Cherrybowll/ohte-harjoitustyo
 ```
 

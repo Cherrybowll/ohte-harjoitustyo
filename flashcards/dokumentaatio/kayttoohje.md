@@ -7,7 +7,7 @@ Lataa ohjelman lähdekoodi [release-sivulta](https://github.com/Cherrybowll/ohte
 
 ## Konfigurointi
 
-Tiedostosta `flashcards/src/.env` voi halutessaan muokata sovelluksen oletusympäristömuuttujia. Näitä on kaksi:
+Tiedostosta `flashcards/.env` voi halutessaan muokata sovelluksen oletusympäristömuuttujia. Näitä on kaksi:
 - `DATABASE_FILENAME`
   - Määrittää SQLite-tietokantatiedoston nimen. Sijaitsee hakemistossa `flashcards/data/`
   - Oletuksena `database.sqlite`

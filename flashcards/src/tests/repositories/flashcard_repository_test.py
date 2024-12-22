@@ -36,3 +36,26 @@ class TestFlashcardRepository(unittest.TestCase):
         flashcards = flashcard_repository.find_by_collection_id(1)
 
         self.assertEqual(len(flashcards), 0)
+
+    def test_delete_by_collection_id_deletes_correct_flashcards(self):
+        flashcard_repository.create(Flashcard("front1", "back1", 2))
+        flashcard_repository.create(Flashcard("front2", "back2", 2))
+        flashcard_repository.delete_by_collection_id(2)
+
+        flashcards1 = flashcard_repository.find_by_collection_id(1)
+        flashcards2 = flashcard_repository.find_by_collection_id(2)
+
+        self.assertEqual(len(flashcards1), 1)
+        self.assertEqual(len(flashcards2), 0)
+
+    def test_delete_by_id_deletes_correct_flashcard(self):
+        flashcard_repository.create(Flashcard("front1", "back1", 1))
+        flashcard_repository.create(Flashcard("front2", "back2", 2))
+        flashcard_repository.delete_by_id(1)
+
+        flashcards1 = flashcard_repository.find_by_collection_id(1)
+        flashcards2 = flashcard_repository.find_by_collection_id(2)
+
+        self.assertEqual(len(flashcards1), 1)
+        self.assertEqual(flashcards1[0].front, "front1")
+        self.assertEqual(len(flashcards2), 1)

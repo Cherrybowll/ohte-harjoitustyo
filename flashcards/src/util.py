@@ -1,4 +1,9 @@
 def validate_username(username):
+    """Validates the given username length.
+
+    Args:
+        username (str): The username to be validated.
+    """
     if len(username) < 1:
         raise ValueError("Käyttätunnuksen minimipituus on 1 merkki")
 
@@ -7,6 +12,12 @@ def validate_username(username):
 
 
 def validate_password(password, password_repeat):
+    """Validates that the password is withing required limits and matches the verification.
+
+    Args:
+        password (str): The password.
+        password_repeat (str): Repeat of the password.
+    """
     if len(password) < 1:
         raise ValueError("Salasanan minimipituus on 1 merkki")
 
@@ -18,6 +29,11 @@ def validate_password(password, password_repeat):
 
 
 def validate_collection_name(collection_name):
+    """Validates the length of the collection name.
+
+    Args:
+        collection_name (str): Name of the collection.
+    """
     if len(collection_name) < 1:
         raise ValueError("Kokoelman nimen minimipituus on 1 merkki")
     if len(collection_name) > 30:
@@ -25,6 +41,11 @@ def validate_collection_name(collection_name):
 
 
 def validate_flashcard_side(side):
+    """Validates the length of the flashcard side.
+
+    Args:
+        side (str): Text from the flashcard side.
+    """
     if len(side) < 1:
         raise ValueError("Kortin kentän minimipituus on 1 merkki")
     if len(side) > 100:

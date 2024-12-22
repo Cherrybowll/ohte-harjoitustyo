@@ -1,12 +1,10 @@
 from tkinter import Tk
 from ui.ui import UI
 
-# note: remains for exploratory testing purposes
-# from initialize_database import initialize_database
-# initialize_database()
-
 
 def main():
+    """Runs the main program loop.
+    """
     window = Tk()
     window.title("Flashcard-sovellus")
 

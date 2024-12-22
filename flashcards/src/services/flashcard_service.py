@@ -155,12 +155,12 @@ class FlashcardService:
         self._flashcard_repository.delete_by_id(flashcard_id)
 
     def collection_not_empty(self):
-        return len(self.get_flashcards_from_collection()) > 0
+        return len(self.get_flashcards_from_collection(self._collection)) > 0
 
     def start_practice(self):
         self._practice_state["current_card"] = 0
         self._practice_state["total_cards"] = len(
-            self.get_flashcards_from_collection())-1
+            self.get_flashcards_from_collection(self._collection))-1
         self._practice_state["results_list"] = [False] * \
             (self._practice_state["total_cards"]+1)
 
@@ -180,21 +180,13 @@ class FlashcardService:
     def total_flashcards(self):
         return self._practice_state["total_cards"]
 
-    def get_practice_results_correct(self):
-        correct_results = []
-        flashcards = self.get_flashcards_from_collection()
+    def get_practice_results(self, correct: bool):
+        results = []
+        flashcards = self.get_flashcards_from_collection(self._collection)
         for i in range(self._practice_state["total_cards"]+1):
-            if self._practice_state["results_list"][i]:
-                correct_results.append(flashcards[i])
-        return correct_results
-
-    def get_practice_results_incorrect(self):
-        incorrect_results = []
-        flashcards = self.get_flashcards_from_collection()
-        for i in range(self._practice_state["total_cards"]+1):
-            if not self._practice_state["results_list"][i]:
-                incorrect_results.append(flashcards[i])
-        return incorrect_results
+            if self._practice_state["results_list"][i] == correct:
+                results.append(flashcards[i])
+        return results
 
     def reset_practice_state(self):
         self._practice_state["current_card"] = 0

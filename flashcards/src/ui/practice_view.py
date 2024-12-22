@@ -70,7 +70,7 @@ class PracticeView:
         self._handle_flashcards_view = handle_flashcards_view
         self._handle_results_view = handle_results_view
         self._collection = flashcard_service.get_collection()
-        self._flashcards = flashcard_service.get_flashcards_from_collection()
+        self._flashcards = flashcard_service.get_flashcards_from_collection(self._collection)
         self._current_card_variable = None
 
         self._initialize()

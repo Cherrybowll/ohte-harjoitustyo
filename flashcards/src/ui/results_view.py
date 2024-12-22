@@ -46,10 +46,10 @@ class ResultsView:
         self._frame = None
         self._subflashcard_list_frame = None
         self._subflashcard_list_view = None
-        self._correct_results = flashcard_service.get_practice_results_correct()
-        self._incorrect_results = flashcard_service.get_practice_results_incorrect()
+        self._correct_results = flashcard_service.get_practice_results(True)
+        self._incorrect_results = flashcard_service.get_practice_results(False)
         self._collection = flashcard_service.get_collection()
-        self._flashcards = flashcard_service.get_flashcards_from_collection()
+        self._flashcards = flashcard_service.get_flashcards_from_collection(self._collection)
 
         self._handle_flashcards_view = handle_flashcards_view
 

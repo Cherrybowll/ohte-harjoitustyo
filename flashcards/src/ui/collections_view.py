@@ -167,7 +167,9 @@ class CollectionsView:
             for flashcard in copy_flashcards:
                 flashcard_service.create_flashcard(
                     flashcard.front, flashcard.back, copy_collection.id)
-            self._initialize_collection_list()
+        else:
+            messagebox.showerror("Virhe", flashcard_service.get_message())
+        self._initialize_collection_list()
 
     def _handle_make_public(self, collection):
         flashcard_service.collection_toggle_public(collection)

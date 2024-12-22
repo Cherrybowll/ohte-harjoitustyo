@@ -15,14 +15,14 @@ def create_tables(connection):
            "id INTEGER PRIMARY KEY,"
            "front TEXT,"
            "back TEXT,"
-           "collection_id REFERENCES collections ON DELETE CASCADE"
+           "collection_id"
            ");")
     cur.execute(sql)
 
     sql = ("CREATE TABLE collections("
            "id INTEGER PRIMARY KEY,"
            "name TEXT,"
-           "creator_id REFERENCES users ON DELETE CASCADE,"
+           "creator_id,"
            "public BOOLEAN DEFAULT FALSE"
            ");")
     cur.execute(sql)

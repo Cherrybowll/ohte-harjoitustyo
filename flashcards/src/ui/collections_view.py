@@ -5,6 +5,7 @@ from services.flashcard_service import flashcard_service
 class CollectionListView:
     """Class for showing the list view for collections.
     """
+
     def __init__(self, root, collections, handle_flashcards, handle_delete_collection, handle_copy_collection, handle_make_public):
         """Class constructor for CollectionListView.
 
@@ -93,6 +94,7 @@ class CollectionListView:
 class CollectionsView:
     """Class for showing the collections view.
     """
+
     def __init__(self, root, handle_login_view, handle_flashcards_view):
         """Class constructor for CollectionsView.
 
@@ -190,7 +192,8 @@ class CollectionsView:
             copy_collection = flashcard_service.get_collection_from_user_with_name(
                 flashcard_service.get_user_id(), copy_name
             )
-            copy_flashcards = flashcard_service.get_flashcards_from_collection(collection)
+            copy_flashcards = flashcard_service.get_flashcards_from_collection(
+                collection)
             for flashcard in copy_flashcards:
                 flashcard_service.create_flashcard(
                     flashcard.front, flashcard.back, copy_collection.id)
@@ -220,7 +223,8 @@ class CollectionsView:
         switch_view_public_button = ttk.Button(
             master=self._frame,
             textvariable=self._public_private_switch_var,
-            command=lambda: self._switch_public_private_view(not self._viewing_public)
+            command=lambda: self._switch_public_private_view(
+                not self._viewing_public)
         )
         collections_label = ttk.Label(
             master=self._frame, textvariable=self._public_private_var)
@@ -233,7 +237,8 @@ class CollectionsView:
         header_label.grid(row=0, column=0, columnspan=2,
                           sticky=constants.W, padx=5, pady=5)
         collections_label.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
-        switch_view_public_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+        switch_view_public_button.grid(
+            row=2, column=0, columnspan=2, padx=5, pady=5)
         self._collection_list_frame.grid(
             row=3, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         self._create_collection_entry.grid(

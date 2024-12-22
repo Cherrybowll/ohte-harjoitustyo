@@ -8,6 +8,7 @@ class CollectionRepository:
     Attributes:
         connection: SQLite database connection.
     """
+
     def __init__(self, connection):
         """Constructor for CollectionRepository
 
@@ -30,7 +31,6 @@ class CollectionRepository:
         return [Collection(
             row["name"], row["creator_id"], row["public"], row["id"]
         ) for row in rows]
-
 
     def find_by_creator_id(self, creator_id):
         """Fetches all collection from database with specified creator_id.

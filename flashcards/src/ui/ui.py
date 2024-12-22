@@ -11,6 +11,7 @@ from config import COLOR_SCHEME
 class UI:
     """Class for switching between UI views. Also sets the correct color scheme.
     """
+
     def __init__(self, root):
         """Class constructor for UI.
 
@@ -106,11 +107,13 @@ class UI:
                 text_color = "#FFFFFF"
                 btn_color = "#E5A970"
 
-
         self._root.option_add("*Background", bg_color)
         self._root.option_add("*Foreground", text_color)
 
         self._style.configure("TFrame", background=bg_color)
-        self._style.configure("TLabel", background=bg_color, foreground=text_color)
-        self._style.configure("TCheckbutton", background=bg_color, foreground=text_color)
-        self._style.configure("TButton", background=btn_color, foreground=text_color)
+        self._style.configure(
+            "TLabel", background=bg_color, foreground=text_color)
+        self._style.configure(
+            "TCheckbutton", background=bg_color, foreground=text_color)
+        self._style.configure(
+            "TButton", background=btn_color, foreground=text_color)

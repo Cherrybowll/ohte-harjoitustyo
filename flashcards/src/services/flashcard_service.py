@@ -12,6 +12,7 @@ class FlashcardService:
     """Class for handling application logic.
     Retrieves data from repositories and is called by the UI.
     """
+
     def __init__(
         self,
         user_repository=dflt_user_repository,
@@ -21,9 +22,12 @@ class FlashcardService:
         """Constructor for the class FlashcardService.
 
         Args:
-            user_repository (UserRepository, optional): Instance of UserRepository.Defaults to dflt_user_repository.
-            collection_repository (CollectionRepository, optional): Instance of CollectionRepository. Defaults to dflt_collection_repository.
-            flashcard_repository (FlashcardRepository, optional): Instance of FlashcardRepository. Defaults to dflt_flashcard_repository.
+            user_repository (UserRepository, optional):
+            Instance of UserRepository.Defaults to dflt_user_repository.
+            collection_repository (CollectionRepository, optional):
+            Instance of CollectionRepository. Defaults to dflt_collection_repository.
+            flashcard_repository (FlashcardRepository, optional):
+            Instance of FlashcardRepository. Defaults to dflt_flashcard_repository.
         """
         self._user_repository = user_repository
         self._collection_repository = collection_repository
@@ -75,7 +79,8 @@ class FlashcardService:
         return self._user.id
 
     def create_user(self, username, password, password_repeat):
-        """Creates a new user if the username isn't already taken and the username and password meet the criteria. Also logs the user in.
+        """Creates a new user if the username isn't already taken and
+        the username and password meet the criteria. Also logs the user in.
 
         Args:
             username (str): Username of the account to be created.
@@ -288,7 +293,8 @@ class FlashcardService:
         """Progresses the practice state and stores the last answer.
 
         Args:
-            correct (bool): Value depicting whether the answer for the card before progressing was correct.
+            correct (bool): Value depicting whether the answer for
+            the card before progressing was correct.
 
         Returns:
             bool: Value depicting if there are more flashcards in the collection being practiced.

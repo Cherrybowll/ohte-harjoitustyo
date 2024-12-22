@@ -7,6 +7,7 @@ class Collection:
         public: Collection's publicity status.
         id: id in DB.
     """
+
     def __init__(self, name, creator_id, public=False, collection_id=None):
         """Class constructor for creating new collections.
 

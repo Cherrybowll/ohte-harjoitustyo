@@ -65,4 +65,5 @@ class TestCollectionRepository(unittest.TestCase):
 
     def test_string_representation(self):
         collection = Collection("collection", 1, False, 1)
-        self.assertEqual(str(collection), "Collection: 1, collection by 1, public=False")
+        self.assertEqual(
+            str(collection), "Collection: 1, collection by 1, public=False")

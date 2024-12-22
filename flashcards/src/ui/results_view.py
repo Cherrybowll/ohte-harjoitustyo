@@ -5,6 +5,7 @@ from services.flashcard_service import flashcard_service
 class ResultsListView:
     """Class for showing the list view of results (used for incorrect flashcards)
     """
+
     def __init__(self, root, subflashcards):
         """Class constructor for ResultsListView.
 
@@ -55,6 +56,7 @@ class ResultsListView:
 class ResultsView:
     """Class for showing the results view.
     """
+
     def __init__(self, root, handle_flashcards_view):
         """Class constructor for ResultsView.
 
@@ -69,7 +71,8 @@ class ResultsView:
         self._correct_results = flashcard_service.get_practice_results(True)
         self._incorrect_results = flashcard_service.get_practice_results(False)
         self._collection = flashcard_service.get_collection()
-        self._flashcards = flashcard_service.get_flashcards_from_collection(self._collection)
+        self._flashcards = flashcard_service.get_flashcards_from_collection(
+            self._collection)
 
         self._handle_flashcards_view = handle_flashcards_view
 

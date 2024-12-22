@@ -7,6 +7,7 @@ class Flashcard:
         collection_id: DB id for the collection that the flashcard is a part of.
         id: id in DB.
     """
+
     def __init__(self, front, back, collection_id, flashcard_id=None):
         """Class constructor for creating new flashcards.
 

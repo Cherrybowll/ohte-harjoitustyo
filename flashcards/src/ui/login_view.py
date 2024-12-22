@@ -5,6 +5,7 @@ from services.flashcard_service import flashcard_service
 class LoginView:
     """Class for showing the login view.
     """
+
     def __init__(self, root, handle_collections_view, handle_register_view):
         """Class constructor for LoginView.
 

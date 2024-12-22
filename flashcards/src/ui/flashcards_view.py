@@ -5,6 +5,7 @@ from services.flashcard_service import flashcard_service
 class FlashcardsListView:
     """Class for creating the list view of flashcards.
     """
+
     def __init__(self, root, flashcards, collection, handle_delete_flashcard):
         """Class constructor for FlashcardsListView.
 
@@ -65,7 +66,8 @@ class FlashcardsListView:
                 master=self._frame, orient=constants.VERTICAL)
             separator1.grid(row=0, column=1, rowspan=i, sticky=constants.NS)
             if self._user_id == self._collection.creator_id:
-                separator2.grid(row=0, column=3, rowspan=i, sticky=constants.NS)
+                separator2.grid(row=0, column=3, rowspan=i,
+                                sticky=constants.NS)
         self._frame.columnconfigure(0, weight=1)
         self._frame.columnconfigure(2, weight=1)
 
@@ -73,6 +75,7 @@ class FlashcardsListView:
 class FlashcardsView:
     """Class for creating the flashcards (contents of collection) view.
     """
+
     def __init__(self, root, handle_practice_view, handle_collections_view):
         """Class constructor for FlashcardsView.
 
@@ -109,7 +112,8 @@ class FlashcardsView:
         if self._flashcard_list_view:
             self._flashcard_list_view.destroy()
 
-        flashcards = flashcard_service.get_flashcards_from_collection(self._collection)
+        flashcards = flashcard_service.get_flashcards_from_collection(
+            self._collection)
 
         self._flashcard_list_view = FlashcardsListView(
             self._flashcard_list_frame, flashcards, self._collection, self._handle_delete_flashcard)
@@ -164,7 +168,7 @@ class FlashcardsView:
             row=1, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
         practice_collection_button.grid(
             row=2, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
-        
+
         if flashcard_service.get_user_id() == self._collection.creator_id:
             self._create_flashcard_front_entry.grid(
                 row=4, column=0, padx=5, pady=5, sticky=constants.EW)

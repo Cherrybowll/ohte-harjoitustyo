@@ -25,7 +25,8 @@ class TestFlashcardService(unittest.TestCase):
         self.assertEqual(flashcard_service._user.username, "user1")
 
     def test_create_user_makes_new_user_and_returns_true(self):
-        success = flashcard_service.create_user("user1", "password1", "password1")
+        success = flashcard_service.create_user(
+            "user1", "password1", "password1")
         user = user_repository.find_by_username("user1")
 
         self.assertEqual(success, True)
@@ -33,15 +34,18 @@ class TestFlashcardService(unittest.TestCase):
         self.assertEqual(user.password, "password1")
 
     def test_create_user_with_different_passwords_fails_and_returns_false(self):
-        success = flashcard_service.create_user("user1", "password1", "password2")
+        success = flashcard_service.create_user(
+            "user1", "password1", "password2")
         user = user_repository.find_by_username("user1")
 
         self.assertEqual(success, False)
         self.assertEqual(user, None)
 
     def test_create_user_with_existing_username_fails(self):
-        success1 = flashcard_service.create_user("user1", "password1", "password1")
-        success2 = flashcard_service.create_user("user1", "password2", "password2")
+        success1 = flashcard_service.create_user(
+            "user1", "password1", "password1")
+        success2 = flashcard_service.create_user(
+            "user1", "password2", "password2")
         user = user_repository.find_by_username("user1")
 
         self.assertEqual(success1, True)

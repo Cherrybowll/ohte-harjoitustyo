@@ -6,6 +6,7 @@ class User:
         password: Password of user account.
         id: Database id for user account.
     """
+
     def __init__(self, username, password, user_id=None):
         """Class constructor for creating a new user.
 

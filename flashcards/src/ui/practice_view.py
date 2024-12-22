@@ -5,6 +5,7 @@ from services.flashcard_service import flashcard_service
 class PracticeFrontView:
     """Class for showing the front side of the current Flashcard in practice mode.
     """
+
     def __init__(self, root, flashcard, handle_turn):
         """Class constructor for PracticeFrontView.
 
@@ -45,6 +46,7 @@ class PracticeFrontView:
 class PracticeBackView:
     """Class for showing the back side of the current Flashcard in practice mode.
     """
+
     def __init__(self, root, flashcard, handle_next):
         """Class constructor for PracticeBackView.
 
@@ -90,6 +92,7 @@ class PracticeBackView:
 class PracticeView:
     """Class for showing the practice mode view.
     """
+
     def __init__(self, root, handle_flashcards_view, handle_results_view):
         """Class constructor for PracticeView.
 
@@ -105,7 +108,8 @@ class PracticeView:
         self._handle_flashcards_view = handle_flashcards_view
         self._handle_results_view = handle_results_view
         self._collection = flashcard_service.get_collection()
-        self._flashcards = flashcard_service.get_flashcards_from_collection(self._collection)
+        self._flashcards = flashcard_service.get_flashcards_from_collection(
+            self._collection)
         self._current_card_variable = None
 
         self._initialize()

@@ -8,6 +8,7 @@ class FlashcardRepository:
     Attributes:
         connection: SQLite database connection.
     """
+
     def __init__(self, connection):
         """Constructor for CollectionRepository
 

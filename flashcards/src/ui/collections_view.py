@@ -164,7 +164,6 @@ class CollectionsView:
                 flashcard_service.get_user_id(), copy_name
             )
             copy_flashcards = flashcard_service.get_flashcards_from_collection(collection)
-            print(copy_flashcards)
             for flashcard in copy_flashcards:
                 flashcard_service.create_flashcard(
                     flashcard.front, flashcard.back, copy_collection.id)

@@ -149,7 +149,7 @@ class CollectionsView:
             message="Kokoelman poistaminen on peruuttamaton operaatio. Haluatko varmasti jatkaa?"
         )
         if user_confirmation:
-            flashcard_service.delete_collection(collection.id)
+            flashcard_service.delete_collection(collection)
             self._initialize_collection_list()
 
     def _handle_copy_collection(self, collection):

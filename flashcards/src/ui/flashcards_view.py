@@ -103,7 +103,7 @@ class FlashcardsView:
                 messagebox.showerror("Virhe", flashcard_service.get_message())
 
     def _handle_delete_flashcard(self, flashcard):
-        flashcard_service.delete_flashcard(flashcard.id)
+        flashcard_service.delete_flashcard(flashcard)
         self._initialize_flashcards_list()
 
     def _handle_practice_start(self):

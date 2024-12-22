@@ -4,6 +4,17 @@
 
 Lataa ohjelman lähdekoodi [release-sivulta](https://github.com/Cherrybowll/ohte-harjoitustyo/releases) valitsemasi releasen *Assets*-osiosta (Source code).
 
+
+## Konfigurointi
+
+Tiedostosta `flashcards/src/.env` voi halutessaan muokata sovelluksen oletusympäristömuuttujia. Näitä on kaksi:
+- `DATABASE_FILENAME`
+  - Määrittää SQLite-tietokantatiedoston nimen. Sijaitsee hakemistossa `flashcards/data/`
+  - Oletuksena `database.sqlite`
+- `COLOR_SCHEME`
+  - Määrittää sovelluksen käyttöliittymän väriteeman (`orange`, `cherry` tai `green`)
+  - Oletuksena `orange`
+
 ## Ohjelman asennus
 
 1. Navigoi hakemistoon `flashcards` ja asenna riippuvuudet komennolla
@@ -26,11 +37,11 @@ Voit lopuksi poistua virtuaaliympäristöstä komennolla
 exit
 ```
 
-## Ohjelman käynnistys
+## Ohjelman käynnistys (asennuksen jälkeen)
 
-Käynnistä sovellus komennolla
+Käynnistä sovellus komennolla (osan `poetry run` voi jättää pois, jos olet yhä virtuaaliympäristössä)
 ```
-invoke start
+poetry run invoke start
 ```
 
 ## Rekisteröityminen
@@ -47,7 +58,7 @@ Aloitusnäkymässä syötä käyttäjänimesi ja salasanasi niille osoitettuihin
 
 ## Uloskirjautuminen
 
-Sisäänkirjautumisen jälkeisessä kokoelma-näkymästä voi kirjautua ulos painamalla *Kirjaudu ulos* -painiketta.
+Sisäänkirjautumisen jälkeisestä kokoelma-näkymästä voi kirjautua ulos painamalla *Kirjaudu ulos* -painiketta.
 
 ## Flashcard-kokoelman luominen, avaaminen ja poistaminen
 
@@ -58,6 +69,15 @@ Voit tarkastella kokoelman sisältöä painamalla painiketta *Avaa* kokoelman ni
 
 Kokoelman voi poistaa painamalla *Poista*-painiketta kokoelman nimen vieressä listanäkymässä.
 Sovellus kysyy, haluatko varmasti jatkaa.
+
+## Flashcard-kokoelman kopioiminen
+
+Voit kopioida flashcard-kokoelman painamalla *Kopioi*-painiketta kokoelman nimen vieressä listanäkymässä.
+Tämä avaa dialogilaatikon, johon on pakko reagoida, jos sovelluksen käyttöä haluaa jatkaa.
+
+Anna dialogilaatikkoon kopiolle nimi ja paina *Ok*-painiketta. Tällöin omiin kokoelmiisi ilmestyy uusi, yksityinen kokoelma antamallasi nimellä.
+
+Kopioiminen edellyttää kokoelman luomisen tavoin, että nimi täyttää hyväksymisehdot (sinulla ei vielä ole samannimistä kokoelmaa ja nimen pituus on välillä 1-30 merkkiä).
 
 ## Uusien flashcardien luominen ja poistaminen
 

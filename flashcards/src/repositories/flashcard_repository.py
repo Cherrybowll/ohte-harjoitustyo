@@ -36,28 +36,6 @@ class FlashcardRepository:
                           row["collection_id"],
                           row["id"]) for row in rows]
 
-    def find_by_id(self, flashcard_id):
-        """Fetches flashcard from database by specified id.
-
-        Args:
-            flashcard_id (int): id of the flashcard.
-
-        Returns:
-            Flashcard: a Flashcard entity.
-        """
-        cur = self._connection.cursor()
-
-        cur.execute("SELECT * FROM flashcards WHERE id=:id",
-                    {"id": flashcard_id})
-        row = cur.fetchone()
-
-        return Flashcard(
-            row["front"],
-            row["back"],
-            row["collection_id"],
-            row["id"]
-        )
-
     def create(self, flashcard):
         """Creates a new flashcard entry in the database.
 

@@ -107,6 +107,7 @@ class FlashcardService:
 
     def delete_collection(self, collection_id):
         self._collection_repository.delete_by_id(collection_id)
+        self._flashcard_repository.delete_by_collection_id(collection_id)
 
     def open_collection(self, collection):
         self._collection = collection

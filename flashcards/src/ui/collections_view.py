@@ -189,7 +189,7 @@ class CollectionsView:
 
         success = flashcard_service.create_collection(copy_name)
         if success:
-            copy_collection = flashcard_service.get_collection_from_user_with_name(
+            copy_collection = flashcard_service.get_collection(
                 flashcard_service.get_user_id(), copy_name
             )
             copy_flashcards = flashcard_service.get_flashcards_from_collection(

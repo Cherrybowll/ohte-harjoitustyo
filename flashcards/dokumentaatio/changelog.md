@@ -45,3 +45,15 @@
 
 ### Sovelluksen koodia/arkkitehtuuria koskevat ominaisuudet/muutokset
 - Lisää testejä flashcard_repository:lle
+
+## Loppupalautus (10.12-22.12)
+
+### Käyttäjää koskevat ominaisuudet/muutokset
+- Käyttäjä ei voi muokata tai poistaa muiden julkisia kokoelmia
+- Käyttäjä voi kopioida omiaan ja muiden julkisia kokoelmia
+
+### Sovelluksen koodia/arkkitehtuuria koskevat ominaisuudet/muutokset
+- Kattavammat testit repositorioille
+- Testejä flashcard_servicelle
+- Refaktorointia ja paljon turhaa koodia poistettu
+- Loput docstring-dokumentaatiot

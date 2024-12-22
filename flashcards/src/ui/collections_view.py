@@ -5,13 +5,12 @@ from services.flashcard_service import flashcard_service
 class CollectionListView:
     """Class for showing the list view for collections.
     """
-    def __init__(self, root, collections, handle_flashcards_view, handle_flashcards, handle_delete_collection, handle_copy_collection, handle_make_public):
+    def __init__(self, root, collections, handle_flashcards, handle_delete_collection, handle_copy_collection, handle_make_public):
         """Class constructor for CollectionListView.
 
         Args:
             root (ttk.Frame): The parent Frame.
             collections (list): list of Collection entities.
-            handle_flashcards_view (funct): Handles showing the flashcards view.
             handle_flashcards (funct): Handles showing the flashcards view.
             handle_delete_collection (funct): Handles deleting the collection.
             handle_copy_collection (funct): Handles copying the collection.
@@ -21,7 +20,6 @@ class CollectionListView:
         self._collections = collections
         self._user_id = flashcard_service.get_user_id()
         self._frame = None
-        self._handle_flashcards_view = handle_flashcards_view # USELESS
         self._handle_flashcards = handle_flashcards
         self._handle_delete_collection = handle_delete_collection
         self._handle_copy_collection = handle_copy_collection
@@ -142,7 +140,6 @@ class CollectionsView:
         self._collection_list_view = CollectionListView(
             self._collection_list_frame,
             collections,
-            self._handle_flashcards_view,
             self._handle_flashcards,
             self._handle_delete_collection,
             self._handle_copy_collection,

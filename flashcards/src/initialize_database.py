@@ -2,6 +2,11 @@ from database_connection import get_database_connection
 
 
 def create_tables(connection):
+    """Creates the tables for the database.
+
+    Args:
+        connection (connection): SQLite database connection.
+    """
     cur = connection.cursor()
 
     sql = ("CREATE TABLE users("
@@ -30,6 +35,11 @@ def create_tables(connection):
 
 
 def drop_tables(connection):
+    """Removes all tables from the database.
+
+    Args:
+        connection (connection): SQLite database connection.
+    """
     cur = connection.cursor()
 
     cur.execute("DROP TABLE IF EXISTS flashcards;")
@@ -39,6 +49,8 @@ def drop_tables(connection):
 
 
 def initialize_database():
+    """Drops all existing tables and creates new ones.
+    """
     connection = get_database_connection()
 
     drop_tables(connection)

@@ -37,7 +37,7 @@
 - Testit CollectionRepositorylle: kaikkien haku, haku tekijän perusteella, luominen...
 - Testit FlashcardRepositorylle, kaikkien haku, haku kokoelman perusteella, luominen...
 
-## Viikko 5 (3.12-10.12)
+## Viikko 6 (3.12-10.12)
 
 ### Käyttäjää koskevat ominaisuudet/muutokset
 - Käyttäjä voi tehdä kokoelmasta julkisen ja näkee muiden julkiset kokoelmat

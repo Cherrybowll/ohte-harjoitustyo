@@ -123,7 +123,7 @@ class FlashcardService:
         Returns:
             bool: Boolean value depicting whether creating the collection was succesful.
         """
-        if self.get_collection(self._user.id, name):
+        if self.get_one_collection(self._user.id, name):
             self.set_message(f"You already have a collection named {name}")
             return False
 
@@ -152,7 +152,7 @@ class FlashcardService:
         """
         return self._collection_repository.find_by_creator_id(self._user.id)
 
-    def get_collection(self, user_id, collection_name):
+    def get_one_collection(self, user_id, collection_name):
         """Returns collection with the specified name and creator.
 
         Args:

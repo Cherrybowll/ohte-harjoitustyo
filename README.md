@@ -8,6 +8,7 @@ Sovelluksessa on myös tavallista käyttäjänhallintaa (käyttäjien rekisterö
 ## Release
 
 [Viikon 6 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko6)
+
 [Viikon 5 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko5)
 
 ## Python-versio ja käyttöjärjestelmä

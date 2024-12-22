@@ -38,7 +38,7 @@ class LoginView:
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi")
         self._username_entry = ttk.Entry(master=self._frame)
         passwod_label = ttk.Label(master=self._frame, text="Salasana")
-        self._password_entry = ttk.Entry(master=self._frame)
+        self._password_entry = ttk.Entry(master=self._frame, show="*")
         login_button = ttk.Button(
             master=self._frame, text="Kirjaudu", command=self._login_handler)
         register_button = ttk.Button(

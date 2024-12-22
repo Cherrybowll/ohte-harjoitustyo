@@ -41,10 +41,10 @@ class RegisterView:
         username_label = ttk.Label(master=self._frame, text="Käyttäjänimi")
         self._username_entry = ttk.Entry(master=self._frame)
         password_label = ttk.Label(master=self._frame, text="Salasana")
-        self._password_entry = ttk.Entry(master=self._frame)
+        self._password_entry = ttk.Entry(master=self._frame, show="*")
         password_repeat_label = ttk.Label(
             master=self._frame, text="Salasana uudestaan")
-        self._password_repeat_entry = ttk.Entry(master=self._frame)
+        self._password_repeat_entry = ttk.Entry(master=self._frame, show="*")
         register_button = ttk.Button(
             master=self._frame, text="Rekisteröidy", command=self._register_handler)
         return_login_button = ttk.Button(

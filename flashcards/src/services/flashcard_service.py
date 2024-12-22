@@ -131,14 +131,6 @@ class FlashcardService:
         self._collection_repository.create(Collection(name, self._user.id))
         return True
 
-    def get_all_collections(self):
-        """Returns all collections.
-
-        Returns:
-            list: list of Collection entities.
-        """
-        return self._collection_repository.find_all()
-
     def get_all_public_collections(self):
         """Returns all public collections.
 

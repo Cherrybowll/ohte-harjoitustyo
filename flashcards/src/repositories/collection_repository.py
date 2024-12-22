@@ -16,21 +16,6 @@ class CollectionRepository:
         """
         self._connection = connection
 
-    def find_all(self):
-        """Fetches all collections from database.
-
-        Returns:
-            list: List of Collection entities.
-        """
-        cur = self._connection.cursor()
-
-        cur.execute("SELECT * FROM collections;")
-        rows = cur.fetchall()
-
-        return [Collection(
-            row["name"], row["creator_id"], row["public"], row["id"]
-        ) for row in rows]
-
     def find_all_public(self):
         """Fetches all public collections from database.
 

@@ -28,23 +28,8 @@ class TestCollectionRepository(unittest.TestCase):
         self.assertEqual(len(collections), 1)
         self.assertEqual(collections[0].name, "collection")
 
-    def test_find_all_returns_all(self):
-        collection_repository.create(Collection("collection1", 1))
-        collection_repository.create(Collection("collection2", 2))
-        collections = collection_repository.find_all()
-
-        self.assertEqual(len(collections), 3)
-        self.assertEqual(collections[0].name, "collection")
-        self.assertEqual(collections[1].name, "collection1")
-        self.assertEqual(collections[2].name, "collection2")
-
     def test_find_by_creator_id_returns_empty_list_if_nonexistent(self):
         collections = collection_repository.find_by_creator_id(2)
-        self.assertEqual(len(collections), 0)
-
-    def test_find_all_returns_empty_list_if_nonexistent(self):
-        collection_repository.delete_all()
-        collections = collection_repository.find_all()
         self.assertEqual(len(collections), 0)
 
     def test_string_representation(self):

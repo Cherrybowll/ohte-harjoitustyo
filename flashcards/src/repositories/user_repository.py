@@ -16,19 +16,6 @@ class UserRepository:
         """
         self._connection = connection
 
-    def find_all(self):
-        """Fetches all users from database.
-
-        Returns:
-            list: List of User entities.
-        """
-        cur = self._connection.cursor()
-
-        cur.execute("SELECT * FROM users;")
-        rows = cur.fetchall()
-
-        return [User(row["username"], row["password"], row["id"]) for row in rows]
-
     def find_by_username(self, username):
         """Fetches all users from database with specified username.
 

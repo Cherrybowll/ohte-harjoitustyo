@@ -16,22 +16,6 @@ class FlashcardRepository:
         """
         self._connection = connection
 
-    def find_all(self):
-        """Fetches all flashcards from database.
-
-        Returns:
-            list: List of Flashcard entities.
-        """
-        cur = self._connection.cursor()
-
-        cur.execute("SELECT * FROM flashcards;")
-        rows = cur.fetchall()
-
-        return [Flashcard(row["front"],
-                          row["back"],
-                          row["collection_id"],
-                          row["id"]) for row in rows]
-
     def find_by_collection_id(self, collection_id):
         """Fetches all flashcards from database with specified collection_id.
 

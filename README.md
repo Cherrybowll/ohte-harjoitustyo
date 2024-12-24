@@ -8,7 +8,7 @@ Sovelluksessa on myös tavallista käyttäjänhallintaa (käyttäjien rekisterö
 
 ## Release
 
-- [Loppupalautus](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/loppupalautus)
+- [Loppupalautus](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/loppupalautus_fix)
 - [Viikon 6 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko6)
 - [Viikon 5 release](https://github.com/Cherrybowll/ohte-harjoitustyo/releases/tag/viikko5)
 
